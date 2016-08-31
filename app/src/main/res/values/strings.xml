@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Lab2Activities</string>
+    <string name="Usuario">Usuario</string>
+    <string name="Clave">Clave de Usuario</string>
+    <string name="LogBtn">Iniciar Sesión</string>
+    <string name="NuevaCuenta">No tienes cuenta aún?</string>
 </resources>
