@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lab2Activities</string>
+    <string name="Usuario">User</string>
+    <string name="Clave">User\'s Password</string>
+    <string name="LogBtn">Log in</string>
+    <string name="INVALID_PASS_OR_USER">Invalid User/Password</string>
+    <string name="NuevaCuenta">You haven\'t an account yet?</string>
+    <string name="REQUIRED_CAMPS">Required Camps</string>
+    <string name="UNREGISTER_USER">Unregistered User</string>
+    <string name="REQUIRED_CAMP">Required Camp</string>
+</resources>
