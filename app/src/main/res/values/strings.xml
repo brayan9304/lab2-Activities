@@ -4,4 +4,20 @@
     <string name="Clave">Clave de Usuario</string>
     <string name="LogBtn">Iniciar Sesión</string>
     <string name="NuevaCuenta">No tienes cuenta aún?</string>
+    <string name="title_activity_nav_drawer">Lab2Activities</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="lugares">Sitios de Interes</string>
+    <string name="mensajeSitios">A donde quieres ir?</string>
+    <string name="acercaDeNav">Acerca de...</string>
+    <string name="perfilNav">Perfil</string>
+    <string name="lugaresNav">Lugares</string>
+    <string name="infoAcercaDe">INGENIERIA DE SISTEMAS\n\nCOMPUTACIÓN MOVIL\n\nJaime Jiménez Serrano\nBrayan Barrientos Pabuena\n\n2016</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Roberto de Jesus Agudelo Restrepo</string>
+
 </resources>
