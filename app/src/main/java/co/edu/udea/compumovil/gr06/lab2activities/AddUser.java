@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 import co.edu.udea.compumovil.gr06.lab2activities.sqlitedb.DataBase;
 
@@ -45,8 +50,8 @@ public class AddUser extends AppCompatActivity {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-
         }
+
     }
 
     @Override
@@ -60,7 +65,7 @@ public class AddUser extends AppCompatActivity {
     }
     public void addUser(View v){
 
-        DataBase admin = new DataBase(this, "root", null, 2);
+        DataBase admin = new DataBase(this, DataBase.NAME_DATABASE, null, DataBase.DB_VERSION);
         SQLiteDatabase bd = admin.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(DataBase.COLUMN_USER_ID, Integer.parseInt(userId.getText().toString()));
@@ -68,10 +73,10 @@ public class AddUser extends AppCompatActivity {
         registro.put(DataBase.COLUMN_USER_PASSWORD, userPassword.getText().toString());
         registro.put(DataBase.COLUMN_USER_AGE, userAge.getText().toString());
         registro.put(DataBase.COLUMN_USER_EMAIL, userEmail.getText().toString());
-        registro.put(DataBase.COLUMN_USER_PICTURE,"oou");
+        registro.put(DataBase.COLUMN_USER_PICTURE,"");
         bd.insert(DataBase.USER_TABLE, null, registro);
         bd.close();
-        Toast.makeText(this, "Se cargaron los datos del artículo",
+        Toast.makeText(this, "los datos han sido guardados",
                 Toast.LENGTH_SHORT).show();
     }
 

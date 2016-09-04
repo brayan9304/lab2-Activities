@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Lab2Activities</string>
-<<<<<<< HEAD
     <string name="cedula">cedula</string>
     <string name="nombre_de_usuario">nombre de usuario</string>
     <string name="contrasena">contrasena</string>
@@ -16,7 +15,6 @@
     <string name="nombre">nombre</string>
     <string name="foto_del_lugar">foto del lugar</string>
     <string name="foto_de_perfil_del_usuario">foto de perfil del usuario</string>
-=======
     <string name="Usuario">Usuario</string>
     <string name="Clave">Clave de Usuario</string>
     <string name="LogBtn">Iniciar Sesión</string>
@@ -36,6 +34,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Roberto de Jesus Agudelo Restrepo</string>
+    <string name="icono_de_loggin">icono de loggin</string>
+    <string name="crear_cuenta">Crear cuenta ?</string>
 
->>>>>>> 07971cbb363b39c0e49b20aec3455d4aba6a2968
+
 </resources>
