@@ -1,0 +1,43 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="co.edu.udea.compumovil.gr06.lab2activities.UI.Perfil">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/UserPhoto"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="40dp"
+            android:src="@drawable/ic_perfil"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/UserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="38sp"
+            android:layout_marginBottom="10dp"
+            android:textAlignment="center"
+            android:text="@string/hello_blank_fragment"
+            android:layout_below="@id/UserPhoto" />
+
+        <TextView
+            android:id="@+id/UserAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="26sp"
+            android:text="@string/hello_blank_fragment"
+            android:layout_below="@id/UserName" />
+
+    </RelativeLayout>
+
+
+</FrameLayout>

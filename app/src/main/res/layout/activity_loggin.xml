@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="co.edu.udea.compumovil.gr06.lab2activities.UI.Loggin">
+
+    <ImageView
+        android:id="@+id/Icono"
+        android:layout_width="150sp"
+        android:layout_height="200sp"
+        android:src="@drawable/ic_place_24dp"
+        android:layout_centerHorizontal="true"
+        android:minWidth="150sp"
+        android:minHeight="200sp"
+        android:maxWidth="150sp"
+        android:maxHeight="200sp"
+        android:layout_marginBottom="@dimen/iconMarginBotton"
+        android:layout_marginTop="@dimen/iconMarginTop"
+         />
+
+    <EditText
+        android:id="@+id/TxtUsuario"
+        android:layout_width="@dimen/widthTxtLog"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:fontFamily="casual"
+        android:hint="@string/Usuario"
+        android:layout_below="@id/Icono"
+        android:layout_centerHorizontal="true"
+        />
+
+    <EditText
+        android:id="@+id/PassUsuario"
+        android:layout_width="@dimen/widthTxtLog"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:fontFamily="casual"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/TxtUsuario"
+        android:hint="@string/Clave"
+        android:ems="10"
+        />
+
+    <Button
+        android:id="@+id/BtnLog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/LogBtn"
+        android:textSize="24sp"
+        android:onClick="Onclick"
+        android:paddingLeft="16sp"
+        android:paddingRight="16sp"
+        android:layout_marginTop="16sp"
+        android:background="@color/colorAccent"
+        android:fontFamily="casual"
+        android:layout_below="@id/PassUsuario"/>
+
+    <TextView
+        android:id="@+id/txtNuevaCuenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/NuevaCuenta"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/iconMarginRight"
+        android:textStyle="bold|italic"
+        android:fontFamily="casual"
+        android:onClick="Onclick"
+        android:textSize="14sp"/>
+
+</RelativeLayout>
