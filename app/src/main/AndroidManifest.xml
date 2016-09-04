@@ -13,6 +13,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".AddPlace" />
         <!--
         <activity android:name=".MainActivity">
         </activity>
@@ -22,17 +23,11 @@
         <activity
             android:name=".UI.NavDrawer"
             android:label="@string/title_activity_nav_drawer"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AddUser">
-        </activity>
-        <activity android:name=".AddPlace">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
     </application>
-
 </manifest>

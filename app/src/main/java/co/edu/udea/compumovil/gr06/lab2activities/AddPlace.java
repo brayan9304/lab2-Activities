@@ -59,7 +59,7 @@ public class AddPlace extends AppCompatActivity {
     }
     public void addPlace(View v){
 
-        DataBase admin = new DataBase(this, "root", null, 2);
+        DataBase admin = new DataBase(this, DataBase.NAME_DATABASE, null, DataBase.DB_VERSION);
         SQLiteDatabase bd = admin.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(DataBase.COLUMN_NAME_PLACE, placeName.getText().toString());
