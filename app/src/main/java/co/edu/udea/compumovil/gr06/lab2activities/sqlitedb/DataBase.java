@@ -1,6 +1,7 @@
 package co.edu.udea.compumovil.gr06.lab2activities.sqlitedb;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -11,6 +12,9 @@ import android.widget.Toast;
  * Created by brayan on 30/08/16.
  */
 public class DataBase extends SQLiteOpenHelper {
+
+    public static int DB_VERSION = 3;
+    public  static String NAME_DATABASE = "root";
 
     //User table
     public static String USER_TABLE ="user";
@@ -39,9 +43,9 @@ public class DataBase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TABLE_USER = "create table " + USER_TABLE + "("
                 + COLUMN_USER_ID  + " int primary key, "
-                + COLUMN_USER_NAME + " text ,"
+                + COLUMN_USER_NAME + " text,"
                 + COLUMN_USER_PASSWORD + " text,"
-                + COLUMN_USER_AGE+ "  text,"
+                + COLUMN_USER_AGE+ " text,"
                 + COLUMN_USER_EMAIL + " text,"
                 + COLUMN_USER_PICTURE + " text )";
         db.execSQL(CREATE_TABLE_USER);

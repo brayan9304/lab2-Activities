@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Lab2Activities</string>
+<<<<<<< HEAD
     <string name="Usuario">Usuario</string>
     <string name="Clave">Clave de Usuario</string>
     <string name="LogBtn">Iniciar Sesión</string>
@@ -23,12 +24,19 @@
     <string name="mensaje_cerrar_sesion">Seguro que desea\ncerrar sesión?</string>
     <string name="opcion_positiva">SI</string>
     <string name="opcion_negativa">NO</string>
+    <string name="icono_de_loggin">icono de loggin</string>
+    <string name="crear_cuenta">Crear cuenta ?</string>
 
     <string name="cedula">cedula</string>
-    <string name="nombre_de_usuario">nombre de usuario</string>
+    <string name="foto_del_lugar">foto_del_lugar</string>
+    <string name="tomar_foto">tomar_foto</string>
+    <string name="nombre">nombre</string>
+    <string name="ubicacion">ubicacion</string>
+    <string name="temperatura">temperatura</string>
+    <string name="anadir_lugar">anadir_lugar</string>
+    <string name="foto_de_perfil_del_usuario">foto_de_perfil_del_usuario</string>
+    <string name="nombre_de_usuario">nombre_de_usuario</string>
     <string name="contrasena">contrasena</string>
-    <string name="correo_electronico">correo electronico</string>
-    <string name="tomar_foto">Tomar foto</string>
     <string name="edad">edad</string>
     <string name="anadir_usuario">Anadir usuario</string>
     <string name="anadir_lugar" >Anadir lugar</string>
@@ -39,4 +47,5 @@
     <string name="nombre">nombre</string>
     <string name="foto_del_lugar">foto del lugar</string>
     <string name="foto_de_perfil_del_usuario">foto de perfil del usuario</string>
+
 </resources>
