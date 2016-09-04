@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Lab2Activities</string>
-<<<<<<< HEAD
     <string name="Usuario">Usuario</string>
     <string name="Clave">Clave de Usuario</string>
     <string name="LogBtn">Iniciar Sesión</string>
@@ -18,10 +17,13 @@
     <string name="lugaresNav">Lugares</string>
     <string name="infoAcercaDe">INGENIERIA DE SISTEMAS\n\nCOMPUTACIÓN MOVIL\n\nJaime Jiménez Serrano\nBrayan Barrientos Pabuena\n\n2016</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Roberto de Jesus Agudelo Restrepo</string>
+    <string name="nav_cuenta">Opciones</string>
+    <string name="nav_sesion">Cerrar Sesión</string>
+    <string name="mensaje_cerrar_sesion">Seguro que desea\ncerrar sesión?</string>
+    <string name="opcion_positiva">SI</string>
+    <string name="opcion_negativa">NO</string>
 
-=======
     <string name="cedula">cedula</string>
     <string name="nombre_de_usuario">nombre de usuario</string>
     <string name="contrasena">contrasena</string>
@@ -37,5 +39,4 @@
     <string name="nombre">nombre</string>
     <string name="foto_del_lugar">foto del lugar</string>
     <string name="foto_de_perfil_del_usuario">foto de perfil del usuario</string>
->>>>>>> local
 </resources>

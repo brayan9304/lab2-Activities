@@ -1,5 +1,6 @@
 package co.edu.udea.compumovil.gr06.lab2activities.UI;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -9,28 +10,54 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 import co.edu.udea.compumovil.gr06.lab2activities.R;
+import co.edu.udea.compumovil.gr06.lab2activities.Validations.Sesion;
 
 public class NavDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     Fragment acercade;
     Fragment perfil;
+    Fragment listaLugares;
+    FloatingActionButton fab;
+    AlertDialog.Builder mensaje;
+    Sesion sesion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_drawer);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        sesion = new Sesion(getApplicationContext());
+
+        sesion.validarLog();
+
+        mensaje = new AlertDialog.Builder(this);
+        mensaje.setMessage(R.string.mensaje_cerrar_sesion);
+        mensaje.setPositiveButton(R.string.opcion_positiva, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                sesion.cerrarSesion();
+                Toast.makeText(getApplicationContext(), "cerrar sesion", Toast.LENGTH_SHORT).show();
+            }
+        });
+        mensaje.setNegativeButton(R.string.opcion_negativa, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+            }
+        });
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,8 +65,9 @@ public class NavDrawer extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+        fab.setClickable(false);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -50,6 +78,7 @@ public class NavDrawer extends AppCompatActivity
 
         acercade = new AcercaDe();
         perfil = new Perfil();
+        listaLugares = new Lugares();
     }
 
     @Override
@@ -58,14 +87,14 @@ public class NavDrawer extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            mensaje.show();
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.nav_drawer, menu);
+        //getMenuInflater().inflate(R.menu.nav_drawer, menu);
         return true;
     }
 
@@ -77,9 +106,6 @@ public class NavDrawer extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -91,22 +117,36 @@ public class NavDrawer extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_lugares) {
-            FragmentTransaction adminFrag = getSupportFragmentManager().beginTransaction();
-            adminFrag.remove(acercade);
-            adminFrag.remove(perfil);
-            adminFrag.addToBackStack(null);
-            adminFrag.commit();
+            replaceFragment(listaLugares);
+            if (!fab.isClickable()) {
+                Animation entradaFab = AnimationUtils.loadAnimation(getApplication(), R.anim.floating_button_in);
+                fab.startAnimation(entradaFab);
+                fab.setClickable(true);
+                fab.setFocusable(true);
+            }
+
+
         } else if (id == R.id.nav_perfil) {
             replaceFragment(perfil);
+            if (fab.isClickable()) {
+                Animation salidaFab = AnimationUtils.loadAnimation(getApplication(), R.anim.floating_button_out);
+                fab.startAnimation(salidaFab);
+                fab.setClickable(false);
+                fab.setFocusable(false);
+            }
 
         } else if (id == R.id.nav_acercaDe) {
             replaceFragment(acercade);
+            if (fab.isClickable()) {
+                Animation salidaFab = AnimationUtils.loadAnimation(getApplication(), R.anim.floating_button_out);
+                fab.startAnimation(salidaFab);
+                fab.setClickable(false);
+                fab.setFocusable(false);
+            }
 
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_cerrarsesion) {
+            mensaje.show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -117,8 +157,9 @@ public class NavDrawer extends AppCompatActivity
     public void replaceFragment(android.support.v4.app.Fragment fragment) {
         FragmentTransaction adminFrag = getSupportFragmentManager().beginTransaction();
         adminFrag.replace(R.id.NavContainerFragments, fragment);
-        adminFrag.addToBackStack(null);
+        adminFrag.disallowAddToBackStack();
         adminFrag.commit();
-
     }
+
+
 }

@@ -1,5 +1,6 @@
 package co.edu.udea.compumovil.gr06.lab2activities.UI;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import co.edu.udea.compumovil.gr06.lab2activities.R;
+import co.edu.udea.compumovil.gr06.lab2activities.Validations.Sesion;
 import co.edu.udea.compumovil.gr06.lab2activities.Validations.ValidationLog;
 
 public class Loggin extends AppCompatActivity implements View.OnFocusChangeListener {
@@ -16,6 +18,7 @@ public class Loggin extends AppCompatActivity implements View.OnFocusChangeListe
     private TextView usuario;
     private TextView clave;
     private int colorBase;
+    private Sesion sesion;
 
 
     @Override
@@ -28,6 +31,8 @@ public class Loggin extends AppCompatActivity implements View.OnFocusChangeListe
         clave = (TextView) findViewById(R.id.PassUsuario);
         usuario.setOnFocusChangeListener(this);
         clave.setOnFocusChangeListener(this);
+
+        sesion = new Sesion(getApplicationContext());
 
     }
 
@@ -42,6 +47,12 @@ public class Loggin extends AppCompatActivity implements View.OnFocusChangeListe
 
                 String userPass = clave.getText().toString();
                 if(ValidationLog.validarCampo(userText)&&ValidationLog.validarCampo(userPass)){
+                    if (userText.equals("test") && userPass.equals("1234")) {
+                        sesion.crearSesion("Jaime", "1234");
+                        Intent i = new Intent(getApplicationContext(), NavDrawer.class);
+                        startActivity(i);
+                        finish();
+                    }
 
                 }else{
                     if(!ValidationLog.validarCampo(userText)){
