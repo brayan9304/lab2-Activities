@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import co.edu.udea.compumovil.gr06.lab2activities.AddUser;
 import co.edu.udea.compumovil.gr06.lab2activities.R;
 import co.edu.udea.compumovil.gr06.lab2activities.Validations.Sesion;
 import co.edu.udea.compumovil.gr06.lab2activities.Validations.ValidationLog;

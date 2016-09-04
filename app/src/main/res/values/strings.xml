@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Lab2Activities</string>
-<<<<<<< HEAD
     <string name="Usuario">Usuario</string>
     <string name="Clave">Clave de Usuario</string>
     <string name="LogBtn">Iniciar Sesión</string>
@@ -28,13 +27,7 @@
     <string name="crear_cuenta">Crear cuenta ?</string>
 
     <string name="cedula">cedula</string>
-    <string name="foto_del_lugar">foto_del_lugar</string>
     <string name="tomar_foto">tomar_foto</string>
-    <string name="nombre">nombre</string>
-    <string name="ubicacion">ubicacion</string>
-    <string name="temperatura">temperatura</string>
-    <string name="anadir_lugar">anadir_lugar</string>
-    <string name="foto_de_perfil_del_usuario">foto_de_perfil_del_usuario</string>
     <string name="nombre_de_usuario">nombre_de_usuario</string>
     <string name="contrasena">contrasena</string>
     <string name="edad">edad</string>
