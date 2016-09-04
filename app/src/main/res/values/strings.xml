@@ -47,5 +47,6 @@
     <string name="nombre">nombre</string>
     <string name="foto_del_lugar">foto del lugar</string>
     <string name="foto_de_perfil_del_usuario">foto de perfil del usuario</string>
+    <string name="correo_electronico">Correo Electronico</string>
 
 </resources>

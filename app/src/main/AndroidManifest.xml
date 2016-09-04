@@ -32,10 +32,10 @@
         </activity>
 
 
-        <activity android:name=".AddUser">
+        <activity android:name=".UI.AddUser">
 
         </activity>
-        <activity android:name=".AddPlace">
+        <activity android:name=".UI.AddPlace">
 
         </activity>
     </application>
