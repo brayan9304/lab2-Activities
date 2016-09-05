@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="co.edu.udea.compumovil.gr06.lab2activities">
-
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -14,7 +13,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".AddPlace" />
         <!--
         <activity android:name=".MainActivity">
         </activity>
@@ -25,17 +24,22 @@
             android:label="@string/title_activity_nav_drawer"
             android:theme="@style/AppTheme.NoActionBar">
 
-        </activity>
-        <activity android:name=".AddUser">
-
-        </activity>
-        <activity android:name=".AddPlace">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+
+        <activity android:name=".UI.AddUser">
+
+        </activity>
+        <activity android:name=".UI.AddPlace">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>

@@ -1,10 +1,10 @@
 package co.edu.udea.compumovil.gr06.lab2activities.UI;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -41,15 +41,18 @@ public class NavDrawer extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         sesion = new Sesion(getApplicationContext());
-
-        sesion.validarLog();
+        //si no esta logueado finaliza esta actividad y carga login
+        if (!sesion.validarLog()) {
+            finish();
+        }
 
         mensaje = new AlertDialog.Builder(this);
         mensaje.setMessage(R.string.mensaje_cerrar_sesion);
         mensaje.setPositiveButton(R.string.opcion_positiva, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 sesion.cerrarSesion();
-                Toast.makeText(getApplicationContext(), "cerrar sesion", Toast.LENGTH_SHORT).show();
+                finish();
+                Toast.makeText(getApplicationContext(), R.string.txtsesionCerrada, Toast.LENGTH_SHORT).show();
             }
         });
         mensaje.setNegativeButton(R.string.opcion_negativa, new DialogInterface.OnClickListener() {
@@ -61,8 +64,8 @@ public class NavDrawer extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent place = new Intent(getApplicationContext(), AddPlace.class);
+                startActivity(place);
             }
         });
         fab.setClickable(false);

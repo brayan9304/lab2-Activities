@@ -20,6 +20,7 @@
     <string name="LogBtn">Iniciar Sesión</string>
     <string name="NuevaCuenta">No tienes cuenta aún?</string>
     <string name="title_activity_nav_drawer">Lab2Activities</string>
+    <string name="txtsesionCerrada">Se ha cerrado\nla Sesión</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -30,7 +31,7 @@
     <string name="acercaDeNav">Acerca de...</string>
     <string name="perfilNav">Perfil</string>
     <string name="lugaresNav">Lugares</string>
-    <string name="infoAcercaDe">INGENIERIA DE SISTEMAS\n\nCOMPUTACIÓN MOVIL\n\nJaime Jiménez Serrano\nBrayan Barrientos Pabuena\n\n2016</string>
+    <string name="infoAcercaDe">INGENIERIA DE SISTEMAS\n\nCOMPUTACIÓN MOVIL\n\nJaime Jiménez Serrano\nBrayan Barrientos Pabuena\nGrupo : 06\n\n2016</string>
 
     <string name="hello_blank_fragment">Roberto de Jesus Agudelo Restrepo</string>
     <string name="icono_de_loggin">icono de loggin</string>

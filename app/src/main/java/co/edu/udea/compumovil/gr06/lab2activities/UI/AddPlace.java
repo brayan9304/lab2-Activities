@@ -1,25 +1,30 @@
-package co.edu.udea.compumovil.gr06.lab2activities;
+package co.edu.udea.compumovil.gr06.lab2activities.UI;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
+import co.edu.udea.compumovil.gr06.lab2activities.R;
 import co.edu.udea.compumovil.gr06.lab2activities.sqlitedb.DataBase;
 
 public class AddPlace extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private EditText placeName;
     private EditText location;
-    private EditText score;
+    private RatingBar score;
     private EditText temperature;
     private EditText description;
     private ImageView placePicture;
+    DataBase admin;
+    SQLiteDatabase bd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,13 +32,18 @@ public class AddPlace extends AppCompatActivity {
         setContentView(R.layout.activity_add_place);
         placeName = (EditText) findViewById(R.id.placeName);
         location = (EditText) findViewById(R.id.placeLocation);
-        score = (EditText)findViewById(R.id.placeScore);
-        temperature = (EditText)findViewById(R.id.placeTemperature);
-        description = (EditText)findViewById((R.id.placeDescription));
+        score = (RatingBar) findViewById(R.id.placeScore);
+        temperature = (EditText) findViewById(R.id.placeTemperature);
+        description = (EditText) findViewById((R.id.placeDescription));
         placePicture = (ImageView) findViewById((R.id.placePicture));
     }//End onCreate
 
-    public void addPhotoPlace(View view){
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    public void addPhotoPlace(View view) {
         dispatchTakePictureIntent();
     }//End addPhotoPlace
 
