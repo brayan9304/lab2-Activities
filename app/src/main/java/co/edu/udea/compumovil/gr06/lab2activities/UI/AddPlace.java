@@ -23,8 +23,6 @@ public class AddPlace extends AppCompatActivity {
     private EditText temperature;
     private EditText description;
     private ImageView placePicture;
-    DataBase admin;
-    SQLiteDatabase bd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +68,7 @@ public class AddPlace extends AppCompatActivity {
         double pScore = score.getRating();
         String pTemp =  temperature.getText().toString();
         String pDescription = description.getText().toString();
-        String pPicture = "";
+        byte[] pPicture = null;
         admin.addPlace(pName, pLocation, pScore, pTemp, pDescription, pPicture);
         Toast.makeText(this, "Se cargaron los datos del artículo",
                 Toast.LENGTH_SHORT).show();
