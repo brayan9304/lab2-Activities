@@ -50,6 +50,7 @@ public class Lugares extends Fragment {
         Bitmap lugarImagen = null;
         admin = new DataBase(fragment.getContext());
         List<Place> lugaresPla = admin.getAllPlaces();
+
         Log.e("lugares", "onCreateView: " + lugaresPla.size());
         lugares = new ArrayList<>();
         try {
