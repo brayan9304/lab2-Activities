@@ -18,7 +18,7 @@ import co.edu.udea.compumovil.gr06.lab2activities.Objects.Place;
  */
 public class DataBase extends SQLiteOpenHelper {
     //Currently version of the data Base
-    public static int DB_VERSION = 2;
+    public static int DB_VERSION = 3;
 
     //Data base name
     public  static String NAME_DATABASE = "laboratorio2.db";
@@ -125,7 +125,7 @@ public class DataBase extends SQLiteOpenHelper {
                 place.setScore(Integer.parseInt(cursor.getString(3)));
                 place.setTemperature(cursor.getString(4));
                 place.setDescription(cursor.getString(5));
-                place.setPicture(cursor.getString(6));
+                place.setPicture(cursor.getBlob(6));
                 placesList.add(place);
             } while (cursor.moveToNext());
         }//End if (cursor.moveToFirst())
