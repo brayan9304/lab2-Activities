@@ -32,7 +32,7 @@
                 android:layout_below="@+id/userPicture"
                 android:layout_centerHorizontal="true"
                 android:text="@string/tomar_foto"
-                android:onClick="addPhoto"/>
+                android:onClick="addPhoto" />
 
             <EditText
                 android:id="@+id/userName"
@@ -49,12 +49,19 @@
                 android:layout_below="@+id/userName"
                 android:hint="@string/contrasena"
                 android:inputType="textPassword" />
+            <EditText
+                android:id="@+id/userPassword2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/userPassword"
+                android:hint="confirmar contrasena"
+                android:inputType="textPassword" />
 
             <EditText
                 android:id="@+id/userAge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/userPassword"
+                android:layout_below="@+id/userPassword2"
                 android:inputType="number"
                 android:hint="@string/edad"></EditText>
 
