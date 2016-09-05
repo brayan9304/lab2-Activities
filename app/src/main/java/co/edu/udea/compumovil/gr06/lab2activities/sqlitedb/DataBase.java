@@ -18,7 +18,7 @@ import co.edu.udea.compumovil.gr06.lab2activities.Objects.Place;
  */
 public class DataBase extends SQLiteOpenHelper {
     //Currently version of the data Base
-    public static int DB_VERSION = 3;
+    public static int DB_VERSION = 4;
 
     //Data base name
     public  static String NAME_DATABASE = "laboratorio2.db";
@@ -63,9 +63,9 @@ public class DataBase extends SQLiteOpenHelper {
                 + COLUMN_NAME_PLACE + " text,"
                 + COLUMN_PLACE_LOCATION + " text,"
                 + COLUMN_PLACE_SCORE + " real,"
-                + COLUMN_PLACE_TEMPERATURE + " tex,"
+                + COLUMN_PLACE_TEMPERATURE + " text,"
                 + COLUMN_PLACE_DESCRIPTION + " text,"
-                + COLUMN_PLACE_PICTURE + "blob"+")";
+                + COLUMN_PLACE_PICTURE + " blob" + ")";
         Log.d("place",CREATE_TABLE_PLACE);
         db.execSQL(CREATE_TABLE_PLACE);
     }//End onCreate
@@ -111,18 +111,19 @@ public class DataBase extends SQLiteOpenHelper {
     }//End addPlace
 
     public List<Place> getAllPlaces() {
-        List<Place> placesList = new ArrayList<Place>();
+        List<Place> placesList = new ArrayList<>();
         String selectQuery = "SELECT  * FROM " + PLACE_TABLE;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
-
+        Log.d("", "getAllPlaces: " + cursor.getCount() + " algo " + cursor.getColumnCount());
         if (cursor.moveToFirst()) {
+            Log.d("algo mas ", "getAllPlaces: " + cursor.getString(0));
             do {
                 Place place = new Place();
                 place.setPlaceId(Integer.parseInt(cursor.getString(0)));
                 place.setNamePlace(cursor.getString(1));
                 place.setLocation(cursor.getString(2));
-                place.setScore(Integer.parseInt(cursor.getString(3)));
+                place.setScore(Float.parseFloat(cursor.getString(3)));
                 place.setTemperature(cursor.getString(4));
                 place.setDescription(cursor.getString(5));
                 place.setPicture(cursor.getBlob(6));

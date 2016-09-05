@@ -7,7 +7,7 @@ public class Place {
     private int placeId;
     private  String namePlace;
     private String location;
-    private int score;
+    private float score;
     private String temperature;
     private String description ;
     private byte[] picture;
@@ -65,11 +65,11 @@ public class Place {
         this.placeId = placeId;
     }//End setPlaceId
 
-    public int getScore() {
+    public float getScore() {
         return score;
     }//End getScore
 
-    public void setScore(int score) {
+    public void setScore(float score) {
         this.score = score;
     }//End setScore
 
