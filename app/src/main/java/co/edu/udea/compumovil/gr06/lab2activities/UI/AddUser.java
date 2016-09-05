@@ -6,12 +6,17 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.Iterator;
+import java.util.List;
+
+import co.edu.udea.compumovil.gr06.lab2activities.Objects.Place;
 import co.edu.udea.compumovil.gr06.lab2activities.R;
 import co.edu.udea.compumovil.gr06.lab2activities.Validations.ValidationLog;
 import co.edu.udea.compumovil.gr06.lab2activities.sqlitedb.DataBase;
@@ -63,6 +68,19 @@ public class AddUser extends AppCompatActivity {
 
     public void addUser(View v) {
         DataBase admin = new DataBase(this);
+
+        List<Place> all = admin.getAllPlaces();
+        Log.d("AllPlaces", ""+all.size());
+        Iterator iterator = all.iterator();
+        while(iterator.hasNext()){
+            Place p = (Place)iterator.next();
+            Log.d("_id", ""+p.getPlaceId());
+            Log.d("name", ""+p.getNamePlace());
+            Log.d("location", ""+p.getLocation());
+            Log.d("temperature", ""+p.getTemperature());
+            Log.d("picture", ""+p.getPicture());
+
+        }
         String uName = userName.getText().toString();
         String uPass = userPassword.getText().toString();
         String uPass2 = userPassword2.getText().toString();

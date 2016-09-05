@@ -69,8 +69,9 @@ public class AddPlace extends AppCompatActivity {
         String pTemp =  temperature.getText().toString();
         String pDescription = description.getText().toString();
         byte[] pPicture = null;
+
         admin.addPlace(pName, pLocation, pScore, pTemp, pDescription, pPicture);
-        Toast.makeText(this, "Se cargaron los datos del artículo",
+        Toast.makeText(this, "Los datos han sido guardados",
                 Toast.LENGTH_SHORT).show();
     }//End addPlace
 }//End class
