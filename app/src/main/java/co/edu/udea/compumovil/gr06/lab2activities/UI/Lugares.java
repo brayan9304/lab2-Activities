@@ -21,7 +21,9 @@ import java.util.List;
 
 import co.edu.udea.compumovil.gr06.lab2activities.Objects.AdapterCard;
 import co.edu.udea.compumovil.gr06.lab2activities.Objects.Lugar_Card;
+import co.edu.udea.compumovil.gr06.lab2activities.Objects.Place;
 import co.edu.udea.compumovil.gr06.lab2activities.R;
+import co.edu.udea.compumovil.gr06.lab2activities.sqlitedb.DataBase;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +34,7 @@ public class Lugares extends Fragment {
     RecyclerView recycler;
     RecyclerView.Adapter adaptador;
     RecyclerView.LayoutManager layout;
+    DataBase admin;
 
     public Lugares() {
         // Required empty public constructor
@@ -45,6 +48,9 @@ public class Lugares extends Fragment {
         final View fragment = inflater.inflate(R.layout.fragment_lugares, container, false);
         lugar = (ImageView) fragment.findViewById(R.id.imagenLugarCard);
         Bitmap lugarImagen = null;
+        admin = new DataBase(fragment.getContext());
+        List<Place> lugaresPla = admin.getAllPlaces();
+        Log.e("lugares", "onCreateView: " + lugaresPla.size());
         lugares = new ArrayList<>();
         try {
             AssetManager temp = fragment.getContext().getAssets();
