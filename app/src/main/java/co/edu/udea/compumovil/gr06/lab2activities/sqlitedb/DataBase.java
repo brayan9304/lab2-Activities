@@ -18,8 +18,7 @@ import co.edu.udea.compumovil.gr06.lab2activities.Objects.Place;
  */
 public class DataBase extends SQLiteOpenHelper {
     //Currently version of the data Base
-    public static int DB_VERSION = 1;
-
+    public static int DB_VERSION = 2;
 
     //Data base name
     public  static String NAME_DATABASE = "laboratorio2.db";
@@ -63,7 +62,7 @@ public class DataBase extends SQLiteOpenHelper {
                 + COLUMN_PLACE_ID + " integer primary key AUTOINCREMENT not null, "
                 + COLUMN_NAME_PLACE + " text,"
                 + COLUMN_PLACE_LOCATION + " text,"
-                + COLUMN_PLACE_SCORE + " int,"
+                + COLUMN_PLACE_SCORE + " real,"
                 + COLUMN_PLACE_TEMPERATURE + " tex,"
                 + COLUMN_PLACE_DESCRIPTION + " text,"
                 + COLUMN_PLACE_PICTURE + " text"+")";
@@ -98,7 +97,7 @@ public class DataBase extends SQLiteOpenHelper {
     }//End getUser
 
 
-    public void addPlace(String pName, String pLocation, int pScore, String pTemperature, String pDescription, String pPicture){
+    public void addPlace(String pName, String pLocation, double pScore, String pTemperature, String pDescription, String pPicture){
         SQLiteDatabase bd = getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(DataBase.COLUMN_NAME_PLACE, pName);

@@ -64,7 +64,7 @@ public class AddPlace extends AppCompatActivity {
         DataBase admin = new DataBase(this);
         String pName = placeName.getText().toString();
         String pLocation = location.getText().toString();
-        int pScore = Integer.parseInt(score.getText().toString());
+        double pScore = score.getRating();
         String pTemp =  temperature.getText().toString();
         String pDescription = description.getText().toString();
         String pPicture = "";

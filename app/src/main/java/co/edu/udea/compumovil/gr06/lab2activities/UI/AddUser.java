@@ -3,6 +3,7 @@ package co.edu.udea.compumovil.gr06.lab2activities.UI;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,11 +11,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import co.edu.udea.compumovil.gr06.lab2activities.R;
 import co.edu.udea.compumovil.gr06.lab2activities.sqlitedb.DataBase;
 
 public class AddUser extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
-    private EditText userId;
     private EditText userName;
     private EditText userPassword;
     private EditText userAge;
@@ -27,7 +28,6 @@ public class AddUser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
-        userId = (EditText) findViewById(R.id.userID);
         userName = (EditText) findViewById(R.id.userName);
         userPassword = (EditText) findViewById(R.id.userPassword);
         userAge = (EditText) findViewById(R.id.userAge);
