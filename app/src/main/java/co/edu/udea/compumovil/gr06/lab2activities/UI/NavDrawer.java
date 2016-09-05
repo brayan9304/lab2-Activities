@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import co.edu.udea.compumovil.gr06.lab2activities.R;
 import co.edu.udea.compumovil.gr06.lab2activities.Validations.Sesion;
+import co.edu.udea.compumovil.gr06.lab2activities.sqlitedb.DataBase;
 
 public class NavDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -45,6 +46,7 @@ public class NavDrawer extends AppCompatActivity
         if (!sesion.validarLog()) {
             finish();
         }
+        String datos = getIntent().getStringExtra(DataBase.COLUMN_PLACE_PICTURE);
 
         mensaje = new AlertDialog.Builder(this);
         mensaje.setMessage(R.string.mensaje_cerrar_sesion);
@@ -81,6 +83,8 @@ public class NavDrawer extends AppCompatActivity
 
         acercade = new AcercaDe();
         perfil = new Perfil();
+        Bundle temp = new Bundle();
+        perfil.setArguments(savedInstanceState);
         listaLugares = new Lugares();
     }
 

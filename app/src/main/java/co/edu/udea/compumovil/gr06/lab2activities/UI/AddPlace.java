@@ -23,8 +23,6 @@ public class AddPlace extends AppCompatActivity {
     private EditText temperature;
     private EditText description;
     private ImageView placePicture;
-    DataBase admin;
-    SQLiteDatabase bd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
