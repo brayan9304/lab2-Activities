@@ -18,7 +18,7 @@ import co.edu.udea.compumovil.gr06.lab2activities.Objects.Place;
  */
 public class DataBase extends SQLiteOpenHelper {
     //Currently version of the data Base
-    public static int DB_VERSION = 3;
+    public static int DB_VERSION = 4;
 
     //Data base name
     public  static String NAME_DATABASE = "laboratorio2.db";
@@ -53,9 +53,9 @@ public class DataBase extends SQLiteOpenHelper {
                 + COLUMN_USER_ID  + " integer primary key AUTOINCREMENT not null, "
                 + COLUMN_USER_NAME + " text,"
                 + COLUMN_USER_PASSWORD + " text,"
-                + COLUMN_USER_AGE+ " text,"
+                + COLUMN_USER_AGE + " text,"
                 + COLUMN_USER_EMAIL + " text,"
-                + COLUMN_USER_PICTURE + " blob )";
+                + COLUMN_USER_PICTURE + " blob"+")";
         db.execSQL(CREATE_TABLE_USER);
 
         String CREATE_TABLE_PLACE = "create table " + PLACE_TABLE  + "("
@@ -63,9 +63,9 @@ public class DataBase extends SQLiteOpenHelper {
                 + COLUMN_NAME_PLACE + " text,"
                 + COLUMN_PLACE_LOCATION + " text,"
                 + COLUMN_PLACE_SCORE + " real,"
-                + COLUMN_PLACE_TEMPERATURE + " tex,"
+                + COLUMN_PLACE_TEMPERATURE + " text,"
                 + COLUMN_PLACE_DESCRIPTION + " text,"
-                + COLUMN_PLACE_PICTURE + "blob"+")";
+                + COLUMN_PLACE_PICTURE + " blob"+")";
         Log.d("place",CREATE_TABLE_PLACE);
         db.execSQL(CREATE_TABLE_PLACE);
     }//End onCreate
