@@ -18,8 +18,7 @@
         <activity android:name=".MainActivity">
         </activity>
         -->
-        <activity android:name=".UI.Loggin">
-        </activity>
+        <activity android:name=".UI.Loggin"></activity>
         <activity
             android:name=".UI.NavDrawer"
             android:label="@string/title_activity_nav_drawer"
@@ -37,6 +36,10 @@
         </activity>
         <activity android:name=".UI.AddPlace">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 </manifest>
