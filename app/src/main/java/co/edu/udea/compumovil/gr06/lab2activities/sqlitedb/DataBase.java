@@ -1,20 +1,27 @@
 package co.edu.udea.compumovil.gr06.lab2activities.sqlitedb;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import co.edu.udea.compumovil.gr06.lab2activities.Objects.Place;
 
 
 /**
  * Created by brayan on 30/08/16.
  */
 public class DataBase extends SQLiteOpenHelper {
+    //Currently version of the data Base
+    public static int DB_VERSION = 2;
 
-    public static int DB_VERSION = 3;
-    public  static String NAME_DATABASE = "root";
+    //Data base name
+    public  static String NAME_DATABASE = "laboratorio2.db";
 
     //User table
     public static String USER_TABLE ="user";
@@ -35,14 +42,15 @@ public class DataBase extends SQLiteOpenHelper {
     public static String COLUMN_PLACE_DESCRIPTION = "description";
     public static String COLUMN_PLACE_PICTURE = "placepicture";
 
-    public DataBase(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
-    }
+
+    public DataBase(Context context) {
+        super(context, NAME_DATABASE, null, DB_VERSION);
+    }//End construct method
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TABLE_USER = "create table " + USER_TABLE + "("
-                + COLUMN_USER_ID  + " int primary key, "
+                + COLUMN_USER_ID  + " integer primary key AUTOINCREMENT not null, "
                 + COLUMN_USER_NAME + " text,"
                 + COLUMN_USER_PASSWORD + " text,"
                 + COLUMN_USER_AGE+ " text,"
@@ -54,18 +62,76 @@ public class DataBase extends SQLiteOpenHelper {
                 + COLUMN_PLACE_ID + " integer primary key AUTOINCREMENT not null, "
                 + COLUMN_NAME_PLACE + " text,"
                 + COLUMN_PLACE_LOCATION + " text,"
-                + COLUMN_PLACE_SCORE + " int,"
-                + COLUMN_PLACE_TEMPERATURE + " text,"
+                + COLUMN_PLACE_SCORE + " real,"
+                + COLUMN_PLACE_TEMPERATURE + " tex,"
                 + COLUMN_PLACE_DESCRIPTION + " text,"
                 + COLUMN_PLACE_PICTURE + " text"+")";
         Log.d("place",CREATE_TABLE_PLACE);
         db.execSQL(CREATE_TABLE_PLACE);
-    }
+    }//End onCreate
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("drop table if exists " +USER_TABLE);
+        db.execSQL("drop table if exists " + PLACE_TABLE);
+        onCreate(db);
+    }//End onUpgrade
 
-    }
+    public void addUser(String userName, String password, int userAge, String email, String userPicture){
+        SQLiteDatabase bd = getWritableDatabase();
+        ContentValues registro = new ContentValues();
+        registro.put(COLUMN_USER_NAME, userName);
+        registro.put(COLUMN_USER_PASSWORD, password);
+        registro.put(COLUMN_USER_AGE, userAge);
+        registro.put(COLUMN_USER_EMAIL, email);
+        registro.put(COLUMN_USER_PICTURE, userPicture);
+        bd.insert(DataBase.USER_TABLE, null, registro);
+        bd.close();
+    }//End addUser
+
+    public Cursor getUser(SQLiteDatabase db, String userName, String password){
+        String[] campos = new String[] {COLUMN_USER_NAME,COLUMN_USER_AGE,COLUMN_USER_PICTURE};
+        String[] args = new String[] {userName, password};
+
+        return db.query(USER_TABLE, campos, "username=? and password=?", args, null, null, null);
+    }//End getUser
 
 
-}
+    public void addPlace(String pName, String pLocation, double pScore, String pTemperature, String pDescription, String pPicture){
+        SQLiteDatabase bd = getWritableDatabase();
+        ContentValues registro = new ContentValues();
+        registro.put(DataBase.COLUMN_NAME_PLACE, pName);
+        registro.put(DataBase.COLUMN_PLACE_LOCATION, pLocation);
+        registro.put(DataBase.COLUMN_PLACE_SCORE, pScore);
+        registro.put(DataBase.COLUMN_PLACE_TEMPERATURE,pTemperature);
+        registro.put(DataBase.COLUMN_PLACE_DESCRIPTION, pDescription);
+        registro.put(DataBase.COLUMN_PLACE_PICTURE, pPicture);
+        bd.insert(DataBase.PLACE_TABLE, null, registro);
+        bd.close();
+    }//End addPlace
+
+    public List<Place> getAllPlaces() {
+        List<Place> placesList = new ArrayList<Place>();
+        String selectQuery = "SELECT  * FROM " + PLACE_TABLE;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Place place = new Place();
+                place.setPlaceId(Integer.parseInt(cursor.getString(0)));
+                place.setNamePlace(cursor.getString(1));
+                place.setLocation(cursor.getString(2));
+                place.setScore(Integer.parseInt(cursor.getString(3)));
+                place.setTemperature(cursor.getString(4));
+                place.setDescription(cursor.getString(5));
+                place.setPicture(cursor.getString(6));
+
+                placesList.add(place);
+            } while (cursor.moveToNext());
+        }//End if (cursor.moveToFirst())
+
+        return placesList;
+    }//End getAllPlaces
+
+}//End class
