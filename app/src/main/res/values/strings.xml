@@ -5,6 +5,7 @@
     <string name="LogBtn">Iniciar Sesión</string>
     <string name="NuevaCuenta">No tienes cuenta aún?</string>
     <string name="title_activity_nav_drawer">Lab2Activities</string>
+    <string name="txtsesionCerrada">Se ha cerrado\nla Sesión</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -15,7 +16,7 @@
     <string name="acercaDeNav">Acerca de...</string>
     <string name="perfilNav">Perfil</string>
     <string name="lugaresNav">Lugares</string>
-    <string name="infoAcercaDe">INGENIERIA DE SISTEMAS\n\nCOMPUTACIÓN MOVIL\n\nJaime Jiménez Serrano\nBrayan Barrientos Pabuena\n\n2016</string>
+    <string name="infoAcercaDe">INGENIERIA DE SISTEMAS\n\nCOMPUTACIÓN MOVIL\n\nJaime Jiménez Serrano\nBrayan Barrientos Pabuena\nGrupo : 06\n\n2016</string>
 
     <string name="hello_blank_fragment">Roberto de Jesus Agudelo Restrepo</string>
     <string name="nav_cuenta">Opciones</string>
@@ -26,20 +27,20 @@
     <string name="icono_de_loggin">icono de loggin</string>
     <string name="crear_cuenta">Crear cuenta ?</string>
 
-    <string name="cedula">cedula</string>
-    <string name="tomar_foto">tomar_foto</string>
-    <string name="nombre_de_usuario">nombre_de_usuario</string>
+    <string name="cedula">Cedula</string>
+    <string name="tomar_foto">Tomar foto</string>
+    <string name="nombre_de_usuario">nombre de Usuario</string>
     <string name="contrasena">contrasena</string>
-    <string name="edad">edad</string>
-    <string name="anadir_usuario">Anadir usuario</string>
-    <string name="anadir_lugar" >Anadir lugar</string>
-    <string name="score">puntaje</string>
-    <string name="descripcion">descripcion</string>
-    <string name="temperatura">temperatura</string>
-    <string name="ubicacion">ubicacion</string>
-    <string name="nombre">nombre</string>
-    <string name="foto_del_lugar">foto del lugar</string>
-    <string name="foto_de_perfil_del_usuario">foto de perfil del usuario</string>
+    <string name="edad">Edad</string>
+    <string name="anadir_usuario">Anadir Usuario</string>
+    <string name="anadir_lugar">Anadir Lugar</string>
+    <string name="score">Puntaje</string>
+    <string name="descripcion">Descripcion</string>
+    <string name="temperatura">Temperatura</string>
+    <string name="ubicacion">Ubicacion</string>
+    <string name="nombre">Nombre</string>
+    <string name="foto_del_lugar">Foto del lugar</string>
+    <string name="foto_de_perfil_del_usuario">Foto de perfil del usuario</string>
     <string name="correo_electronico">Correo Electronico</string>
 
 </resources>

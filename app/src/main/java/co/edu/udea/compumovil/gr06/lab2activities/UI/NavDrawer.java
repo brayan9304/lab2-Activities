@@ -41,15 +41,18 @@ public class NavDrawer extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         sesion = new Sesion(getApplicationContext());
-
-        sesion.validarLog();
+        //si no esta logueado finaliza esta actividad y carga login
+        if (!sesion.validarLog()) {
+            finish();
+        }
 
         mensaje = new AlertDialog.Builder(this);
         mensaje.setMessage(R.string.mensaje_cerrar_sesion);
         mensaje.setPositiveButton(R.string.opcion_positiva, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 sesion.cerrarSesion();
-                Toast.makeText(getApplicationContext(), "cerrar sesion", Toast.LENGTH_SHORT).show();
+                finish();
+                Toast.makeText(getApplicationContext(), R.string.txtsesionCerrada, Toast.LENGTH_SHORT).show();
             }
         });
         mensaje.setNegativeButton(R.string.opcion_negativa, new DialogInterface.OnClickListener() {

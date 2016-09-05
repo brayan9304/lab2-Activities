@@ -96,6 +96,11 @@ public class Loggin extends AppCompatActivity implements View.OnFocusChangeListe
     }
 
     @Override
+    public void onBackPressed() {
+        finish();
+    }
+
+    @Override
     public void onFocusChange(View v, boolean hasFocus) {
 
         switch (v.getId()){

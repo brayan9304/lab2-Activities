@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,6 +25,8 @@ public class AddPlace extends AppCompatActivity {
     private EditText temperature;
     private EditText description;
     private ImageView placePicture;
+    DataBase admin;
+    SQLiteDatabase bd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,8 @@ public class AddPlace extends AppCompatActivity {
         temperature = (EditText) findViewById(R.id.placeTemperature);
         description = (EditText) findViewById((R.id.placeDescription));
         placePicture = (ImageView) findViewById((R.id.placePicture));
+        admin = new DataBase(this, DataBase.NAME_DATABASE, null, DataBase.DB_VERSION);
+        bd = admin.getWritableDatabase();
     }
 
     @Override
@@ -67,8 +72,7 @@ public class AddPlace extends AppCompatActivity {
 
     public void addPlace(View v) {
 
-        DataBase admin = new DataBase(this, DataBase.NAME_DATABASE, null, DataBase.DB_VERSION);
-        SQLiteDatabase bd = admin.getWritableDatabase();
+
         ContentValues registro = new ContentValues();
         registro.put(DataBase.COLUMN_NAME_PLACE, placeName.getText().toString());
         registro.put(DataBase.COLUMN_PLACE_LOCATION, location.getText().toString());
@@ -76,7 +80,7 @@ public class AddPlace extends AppCompatActivity {
         registro.put(DataBase.COLUMN_PLACE_TEMPERATURE, temperature.getText().toString());
         registro.put(DataBase.COLUMN_PLACE_DESCRIPTION, description.getText().toString());
         registro.put(DataBase.COLUMN_PLACE_PICTURE, "");
-        bd.insert(DataBase.PLACE_TABLE, null, registro);
+        Log.e("error", "addPlace: " + bd.insert(DataBase.PLACE_TABLE, null, registro));
         bd.close();
         Toast.makeText(this, "Se cargaron los datos del artículo",
                 Toast.LENGTH_SHORT).show();

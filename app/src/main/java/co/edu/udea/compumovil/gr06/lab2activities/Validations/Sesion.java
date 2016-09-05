@@ -20,7 +20,7 @@ public class Sesion {
     private static final String NOMBRE_PREF = "AndroidHivePref";
     private static final String ESTA_LOGGEADO = "EstaLogueado";
     private static final String KEY_NOMBRE = "nombre";
-    private static final String KEY_CONTRASEÑA = "contraseña";
+    private static final String KEY_EDAD = "edad";
 
     public Sesion(Context context) {
         this.contextoApp = context;
@@ -28,14 +28,14 @@ public class Sesion {
         edt = preferencias.edit();
     }
 
-    public void crearSesion(String nombre, String clave) {
+    public void crearSesion(String nombre, String edad) {
         edt.putBoolean(ESTA_LOGGEADO, true);
         edt.putString(KEY_NOMBRE, nombre);
-        edt.putString(KEY_CONTRASEÑA, clave);
+        edt.putString(KEY_EDAD, edad);
         edt.commit();
     }
 
-    public void validarLog() {
+    public boolean validarLog() {
         // Check login status
         if (!this.estaLoggueado()) {
             // user is not logged in redirect him to Login Activity
@@ -48,7 +48,9 @@ public class Sesion {
 
             // Staring Login Activity
             contextoApp.startActivity(i);
+            return false;
         }
+        return true;
 
     }
 
@@ -58,7 +60,7 @@ public class Sesion {
         user.put(KEY_NOMBRE, preferencias.getString(KEY_NOMBRE, null));
 
         // user email id
-        user.put(KEY_CONTRASEÑA, preferencias.getString(KEY_CONTRASEÑA, null));
+        user.put(KEY_EDAD, preferencias.getString(KEY_EDAD, null));
 
         // return user
         return user;
@@ -71,7 +73,6 @@ public class Sesion {
         // Clearing all data from Shared Preferences
         edt.clear();
         edt.commit();
-
         // After logout redirect user to Loing Activity
         Intent i = new Intent(contextoApp, Loggin.class);
         // Closing all the Activities
