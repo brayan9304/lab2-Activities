@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".AddUser">
+    tools:context=".UI.AddUser">
     tools:context=".UI.AddUser">
 
     <ScrollView
@@ -33,19 +33,12 @@
                 android:layout_centerHorizontal="true"
                 android:text="@string/tomar_foto"
                 android:onClick="addPhoto"/>
-            <EditText
-                android:id="@+id/userID"
-                android:layout_below="@+id/addPhoto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/cedula"
-                android:inputType="number" />
 
             <EditText
                 android:id="@+id/userName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/userID"
+                android:layout_below="@+id/addPhoto"
                 android:hint="@string/nombre_de_usuario"
                 android:inputType="text" />
 
