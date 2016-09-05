@@ -34,7 +34,7 @@ public class AddPlace extends AppCompatActivity {
         temperature = (EditText) findViewById(R.id.placeTemperature);
         description = (EditText) findViewById((R.id.placeDescription));
         placePicture = (ImageView) findViewById((R.id.placePicture));
-    }
+    }//End onCreate
 
     @Override
     public void onBackPressed() {
@@ -68,7 +68,7 @@ public class AddPlace extends AppCompatActivity {
         double pScore = score.getRating();
         String pTemp =  temperature.getText().toString();
         String pDescription = description.getText().toString();
-        String pPicture = "";
+        byte[] pPicture = null;
         admin.addPlace(pName, pLocation, pScore, pTemp, pDescription, pPicture);
         Toast.makeText(this, "Se cargaron los datos del artículo",
                 Toast.LENGTH_SHORT).show();

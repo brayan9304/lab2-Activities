@@ -63,10 +63,19 @@ public class AddUser extends AppCompatActivity {
         String uPass = userPassword.getText().toString();
         int uAge = Integer.parseInt(userAge.getText().toString());
         String uEmail = userEmail.getText().toString();
-        String uPicture = "";
-        admin.addUser(uName, uPass, uAge, uEmail, uPicture);
-        Toast.makeText(this, "los datos han sido guardados",
-                Toast.LENGTH_SHORT).show();
+        byte[] uPicture = null;
+        if(!admin.userExist(uName)){
+            if(!admin.emailExist(uEmail)){
+                admin.addUser(uName, uPass, uAge, uEmail, uPicture);
+                Toast.makeText(this, "los datos han sido guardados",
+                        Toast.LENGTH_SHORT).show();
+            }//End if (!admin.emailExist())
+            Toast.makeText(this, "Ya existe un usuario con esa cuenta de correo",
+                    Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "Ya existe un usuario con ese nombre",
+                    Toast.LENGTH_SHORT).show();
+        }//End if (!admin.userExist())
     }//End addUser
 }//End class
 

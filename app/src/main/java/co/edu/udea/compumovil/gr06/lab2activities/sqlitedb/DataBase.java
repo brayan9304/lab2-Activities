@@ -18,7 +18,7 @@ import co.edu.udea.compumovil.gr06.lab2activities.Objects.Place;
  */
 public class DataBase extends SQLiteOpenHelper {
     //Currently version of the data Base
-    public static int DB_VERSION = 2;
+    public static int DB_VERSION = 3;
 
     //Data base name
     public  static String NAME_DATABASE = "laboratorio2.db";
@@ -55,7 +55,7 @@ public class DataBase extends SQLiteOpenHelper {
                 + COLUMN_USER_PASSWORD + " text,"
                 + COLUMN_USER_AGE+ " text,"
                 + COLUMN_USER_EMAIL + " text,"
-                + COLUMN_USER_PICTURE + " text )";
+                + COLUMN_USER_PICTURE + " blob )";
         db.execSQL(CREATE_TABLE_USER);
 
         String CREATE_TABLE_PLACE = "create table " + PLACE_TABLE  + "("
@@ -65,7 +65,7 @@ public class DataBase extends SQLiteOpenHelper {
                 + COLUMN_PLACE_SCORE + " real,"
                 + COLUMN_PLACE_TEMPERATURE + " tex,"
                 + COLUMN_PLACE_DESCRIPTION + " text,"
-                + COLUMN_PLACE_PICTURE + " text"+")";
+                + COLUMN_PLACE_PICTURE + "blob"+")";
         Log.d("place",CREATE_TABLE_PLACE);
         db.execSQL(CREATE_TABLE_PLACE);
     }//End onCreate
@@ -77,7 +77,7 @@ public class DataBase extends SQLiteOpenHelper {
         onCreate(db);
     }//End onUpgrade
 
-    public void addUser(String userName, String password, int userAge, String email, String userPicture){
+    public void addUser(String userName, String password, int userAge, String email, byte[] userPicture){
         SQLiteDatabase bd = getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COLUMN_USER_NAME, userName);
@@ -97,7 +97,7 @@ public class DataBase extends SQLiteOpenHelper {
     }//End getUser
 
 
-    public void addPlace(String pName, String pLocation, double pScore, String pTemperature, String pDescription, String pPicture){
+    public void addPlace(String pName, String pLocation, double pScore, String pTemperature, String pDescription, byte[] pPicture){
         SQLiteDatabase bd = getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(DataBase.COLUMN_NAME_PLACE, pName);
@@ -125,8 +125,7 @@ public class DataBase extends SQLiteOpenHelper {
                 place.setScore(Integer.parseInt(cursor.getString(3)));
                 place.setTemperature(cursor.getString(4));
                 place.setDescription(cursor.getString(5));
-                place.setPicture(cursor.getString(6));
-
+                place.setPicture(cursor.getBlob(6));
                 placesList.add(place);
             } while (cursor.moveToNext());
         }//End if (cursor.moveToFirst())
@@ -134,4 +133,19 @@ public class DataBase extends SQLiteOpenHelper {
         return placesList;
     }//End getAllPlaces
 
+    public boolean userExist(String user) {
+        SQLiteDatabase db = getWritableDatabase();
+        String[] campos = new String[] {COLUMN_USER_NAME};
+        String[] args = new String[] {user};
+        Cursor cursor = db.query(USER_TABLE, campos, "username=?", args, null, null, null);
+        return cursor.getCount() > 0;
+    }//End userExist()
+
+    public boolean emailExist(String email) {
+        SQLiteDatabase db = getWritableDatabase();
+        String[] campos = new String[] {COLUMN_USER_EMAIL};
+        String[] args = new String[] {email};
+        Cursor cursor = db.query(USER_TABLE, campos, "email=?", args, null, null, null);
+        return cursor.getCount() > 0;
+    }//End emailExist()
 }//End class
