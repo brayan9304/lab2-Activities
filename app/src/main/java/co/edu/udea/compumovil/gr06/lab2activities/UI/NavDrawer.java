@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import co.edu.udea.compumovil.gr06.lab2activities.R;
 import co.edu.udea.compumovil.gr06.lab2activities.Validations.Sesion;
+import co.edu.udea.compumovil.gr06.lab2activities.sqlitedb.DataBase;
 
 public class NavDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -41,15 +42,19 @@ public class NavDrawer extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         sesion = new Sesion(getApplicationContext());
-
-        sesion.validarLog();
+        //si no esta logueado finaliza esta actividad y carga login
+        if (!sesion.validarLog()) {
+            finish();
+        }
+        String datos = getIntent().getStringExtra(DataBase.COLUMN_PLACE_PICTURE);
 
         mensaje = new AlertDialog.Builder(this);
         mensaje.setMessage(R.string.mensaje_cerrar_sesion);
         mensaje.setPositiveButton(R.string.opcion_positiva, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 sesion.cerrarSesion();
-                Toast.makeText(getApplicationContext(), "cerrar sesion", Toast.LENGTH_SHORT).show();
+                finish();
+                Toast.makeText(getApplicationContext(), R.string.txtsesionCerrada, Toast.LENGTH_SHORT).show();
             }
         });
         mensaje.setNegativeButton(R.string.opcion_negativa, new DialogInterface.OnClickListener() {
@@ -78,6 +83,8 @@ public class NavDrawer extends AppCompatActivity
 
         acercade = new AcercaDe();
         perfil = new Perfil();
+        Bundle temp = new Bundle();
+        perfil.setArguments(savedInstanceState);
         listaLugares = new Lugares();
     }
 

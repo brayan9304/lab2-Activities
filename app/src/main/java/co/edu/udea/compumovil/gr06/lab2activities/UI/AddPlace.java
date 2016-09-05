@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -67,7 +68,7 @@ public class AddPlace extends AppCompatActivity {
         double pScore = score.getRating();
         String pTemp =  temperature.getText().toString();
         String pDescription = description.getText().toString();
-        String pPicture = "";
+        byte[] pPicture = null;
         admin.addPlace(pName, pLocation, pScore, pTemp, pDescription, pPicture);
         Toast.makeText(this, "Se cargaron los datos del artículo",
                 Toast.LENGTH_SHORT).show();

@@ -10,9 +10,9 @@ public class Place {
     private int score;
     private String temperature;
     private String description ;
-    private String picture;
+    private byte[] picture;
 
-    public Place(String temperature, String description, String location, String namePlace, String picture, int placeId, int score) {
+    public Place(String temperature, String description, String location, String namePlace, byte[] picture, int placeId, int score) {
         this.temperature = temperature;
         this.description = description;
         this.location = location;
@@ -49,11 +49,11 @@ public class Place {
         this.namePlace = namePlace;
     }//End setNamePlace
 
-    public String getPicture() {
+    public byte[] getPicture() {
         return picture;
     }//End getPicture
 
-    public void setPicture(String picture) {
+    public void setPicture(byte[] picture) {
         this.picture = picture;
     }//End setPicture
 

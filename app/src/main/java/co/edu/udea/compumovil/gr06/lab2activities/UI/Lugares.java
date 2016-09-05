@@ -45,11 +45,11 @@ public class Lugares extends Fragment {
         final View fragment = inflater.inflate(R.layout.fragment_lugares, container, false);
         lugar = (ImageView) fragment.findViewById(R.id.imagenLugarCard);
         Bitmap lugarImagen = null;
+        lugares = new ArrayList<>();
         try {
             AssetManager temp = fragment.getContext().getAssets();
             lugarImagen = BitmapFactory.decodeStream(temp.open("Imagenes/Torre-Eiffel-vista-panoramica.jpg"));
             //lugar.setImageBitmap(lugarImagen);
-            lugares = new ArrayList<>();
             lugares.add(new Lugar_Card(lugarImagen, "Torre Eiffel", "es bonita y muy grande est sdsff sdfds f rewr  eld asdo sdn sd", 3.0F));
             lugarImagen = BitmapFactory.decodeStream(temp.open("Imagenes/lugares-turisticos-kipcool.jpg"));
             lugares.add(new Lugar_Card(lugarImagen, "Kipcool", "información rara sobre este lugar pero algo mas raro es como copio XD", 5.0F));

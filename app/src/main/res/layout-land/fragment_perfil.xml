@@ -25,6 +25,8 @@
             android:textAlignment="viewStart"
             android:textSize="32sp"
             android:layout_marginBottom="20dp"
+            android:textAllCaps="true"
+            android:textAppearance="@android:style/TextAppearance"
             android:layout_toRightOf="@id/UserPhoto"
             android:layout_centerVertical="true"
             android:text="@string/hello_blank_fragment" />
