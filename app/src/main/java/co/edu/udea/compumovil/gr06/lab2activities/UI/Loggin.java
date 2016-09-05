@@ -29,62 +29,58 @@ public class Loggin extends AppCompatActivity implements View.OnFocusChangeListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loggin);
-
         usuario = (TextView) findViewById(R.id.TxtUsuario);
         colorBase = usuario.getCurrentHintTextColor();
         clave = (TextView) findViewById(R.id.PassUsuario);
         usuario.setOnFocusChangeListener(this);
         clave.setOnFocusChangeListener(this);
-
         sesion = new Sesion(getApplicationContext());
+    }//End onCreate
 
-    }
-//Metodo login
-    public void login(String userText, String pass){
-        DataBase admin = new DataBase(this, DataBase.NAME_DATABASE,null,DataBase.DB_VERSION);
-        SQLiteDatabase bd = admin.getWritableDatabase();
-        Cursor fila = bd.rawQuery("select username, password from '"+DataBase.USER_TABLE+"' "+
-                        " where '" +DataBase.COLUMN_USER_NAME+"' "+" = '" +userText +"'"+
-                        " and '" +DataBase.COLUMN_USER_PASSWORD+"'"+" = '" +pass+"'", null);
-        if (fila.moveToFirst()) {
-            Intent intent = new Intent(this, NavDrawer.class);
-            startActivity(intent);
-        } else
-            Toast.makeText(this, "Este usuario no existe",
-                    Toast.LENGTH_SHORT).show();
-        bd.close();
-    }//End metodo login
-// onClick
-    public  void Onclick(View e){
+    //Metodo login
+    public Cursor login(String userName, String password) {
+        DataBase admin = new DataBase(getBaseContext());
+        SQLiteDatabase db = admin.getWritableDatabase();
+        Cursor cursor = admin.getUser(db, userName, password);
+        return cursor;
+    }//End onClick
 
-        switch (e.getId()){
+    public void Onclick(View e) {
 
+        switch (e.getId()) {
             case R.id.BtnLog:
                 Log.i("En inciar Sesión", "Onclick: Iniciar");
 
                 String userText = usuario.getText().toString();
                 String userPass = clave.getText().toString();
-                login(userText, userPass);
 
-                if(ValidationLog.validarCampo(userText)&&ValidationLog.validarCampo(userPass)){
-                    if (userText.equals("test") && userPass.equals("1234")) {
-                        sesion.crearSesion("Jaime", "1234");
-                        Intent i = new Intent(getApplicationContext(), NavDrawer.class);
-                        startActivity(i);
-                        finish();
-                    }
+                if (ValidationLog.validarCampo(userText) && ValidationLog.validarCampo(userPass)) {
+                    Cursor cursor = login(userText, userPass);
+                    if (cursor.getCount() > 0) {
+                        if (cursor.moveToFirst()) {
+                            Intent intent = new Intent(this, NavDrawer.class);
+                            sesion.crearSesion(cursor.getString(0), cursor.getString(1));
+                            intent.putExtra(DataBase.COLUMN_USER_PICTURE, cursor.getString(2));
+                            startActivity(intent);
+                            finish();
+                        }//End if (cursor.moveToFirst())
+                    } else {
+                        Toast.makeText(this, R.string.login_incorrecto,
+                                Toast.LENGTH_SHORT).show();
+                    }//End if-else
 
-                }else{
-                    if(!ValidationLog.validarCampo(userText)){
+                } else {
+                    if (!ValidationLog.validarCampo(userText)) {
                         usuario.setHintTextColor(getResources().getColor(R.color.colorErrorCamp));
-                    }else{
+                    } else {
                         usuario.setHintTextColor(ColorStateList.valueOf(colorBase));
                     }
-                    if(!ValidationLog.validarCampo(userPass)){
+                    if (!ValidationLog.validarCampo(userPass)) {
                         clave.setHintTextColor(getResources().getColor(R.color.colorErrorCamp));
                     }
-                    Toast.makeText(this, getResources().getString(R.string.REQUIRED_CAMPS),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getResources().getString(R.string.REQUIRED_CAMPS), Toast.LENGTH_SHORT).show();
                 }
+
                 break;
 
             case R.id.txtNuevaCuenta:
@@ -99,15 +95,15 @@ public class Loggin extends AppCompatActivity implements View.OnFocusChangeListe
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
 
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.TxtUsuario:
-                if(!hasFocus){
+                if (!hasFocus) {
                     String userText = usuario.getText().toString();
-                    if(!ValidationLog.validarCampo(userText)){
+                    if (!ValidationLog.validarCampo(userText)) {
                         usuario.setHintTextColor(getResources().getColor(R.color.colorErrorCamp));
-                        Toast.makeText(this, getResources().getString(R.string.REQUIRED_CAMP) ,Toast.LENGTH_SHORT).show();
-                    }else{
+                        Toast.makeText(this, getResources().getString(R.string.REQUIRED_CAMP), Toast.LENGTH_SHORT).show();
+                    } else {
                         usuario.setHintTextColor(ColorStateList.valueOf(colorBase));
                     }
                     Log.i("En txtUsuario", "FocusLost: TxtUsuario");
@@ -116,12 +112,12 @@ public class Loggin extends AppCompatActivity implements View.OnFocusChangeListe
                 break;
 
             case R.id.PassUsuario:
-                if(!hasFocus){
+                if (!hasFocus) {
                     String userPass = clave.getText().toString();
-                    if(!ValidationLog.validarCampo(userPass)){
+                    if (!ValidationLog.validarCampo(userPass)) {
                         clave.setHintTextColor(getResources().getColor(R.color.colorErrorCamp));
-                        Toast.makeText(this, getResources().getString(R.string.REQUIRED_CAMP) ,Toast.LENGTH_SHORT).show();
-                    }else{
+                        Toast.makeText(this, getResources().getString(R.string.REQUIRED_CAMP), Toast.LENGTH_SHORT).show();
+                    } else {
                         usuario.setHintTextColor(ColorStateList.valueOf(colorBase));
                     }
                 }

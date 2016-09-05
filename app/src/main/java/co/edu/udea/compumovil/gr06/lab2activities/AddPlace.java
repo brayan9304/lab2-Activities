@@ -1,8 +1,6 @@
 package co.edu.udea.compumovil.gr06.lab2activities;
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -33,20 +31,18 @@ public class AddPlace extends AppCompatActivity {
         temperature = (EditText)findViewById(R.id.placeTemperature);
         description = (EditText)findViewById((R.id.placeDescription));
         placePicture = (ImageView) findViewById((R.id.placePicture));
-    }
+    }//End onCreate
 
     public void addPhotoPlace(View view){
         dispatchTakePictureIntent();
-    }
-
+    }//End addPhotoPlace
 
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-
-        }
-    }
+        }//End if
+    }//End dispatchTakePictureIntent
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -54,23 +50,19 @@ public class AddPlace extends AppCompatActivity {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             placePicture.setImageBitmap(imageBitmap);
+        }//End if
+    }//End onActivityResult
 
-        }
-    }
     public void addPlace(View v){
-
-        DataBase admin = new DataBase(this, DataBase.NAME_DATABASE, null, DataBase.DB_VERSION);
-        SQLiteDatabase bd = admin.getWritableDatabase();
-        ContentValues registro = new ContentValues();
-        registro.put(DataBase.COLUMN_NAME_PLACE, placeName.getText().toString());
-        registro.put(DataBase.COLUMN_PLACE_LOCATION, location.getText().toString());
-        registro.put(DataBase.COLUMN_PLACE_SCORE, score.getText().toString());
-        registro.put(DataBase.COLUMN_PLACE_TEMPERATURE, temperature.getText().toString());
-        registro.put(DataBase.COLUMN_PLACE_DESCRIPTION, description.getText().toString());
-        registro.put(DataBase.COLUMN_PLACE_PICTURE,"");
-        bd.insert(DataBase.PLACE_TABLE, null, registro);
-        bd.close();
+        DataBase admin = new DataBase(this);
+        String pName = placeName.getText().toString();
+        String pLocation = location.getText().toString();
+        int pScore = Integer.parseInt(score.getText().toString());
+        String pTemp =  temperature.getText().toString();
+        String pDescription = description.getText().toString();
+        String pPicture = "";
+        admin.addPlace(pName, pLocation, pScore, pTemp, pDescription, pPicture);
         Toast.makeText(this, "Se cargaron los datos del artículo",
                 Toast.LENGTH_SHORT).show();
-    }
-}
+    }//End addPlace
+}//End class
