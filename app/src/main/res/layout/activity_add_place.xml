@@ -77,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/placeScore"
-                android:inputType="text"
+                android:inputType="numberSigned"
                 android:singleLine="true"
                 android:hint="@string/temperatura"></EditText>
 
@@ -89,7 +89,6 @@
                 android:hint="@string/descripcion"
                 android:gravity="start"
                 android:inputType="textMultiLine" />
-
 
             <Button
                 android:id="@+id/placeAdd"

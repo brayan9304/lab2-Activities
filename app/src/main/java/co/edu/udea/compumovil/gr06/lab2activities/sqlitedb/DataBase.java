@@ -53,9 +53,9 @@ public class DataBase extends SQLiteOpenHelper {
                 + COLUMN_USER_ID  + " integer primary key AUTOINCREMENT not null, "
                 + COLUMN_USER_NAME + " text,"
                 + COLUMN_USER_PASSWORD + " text,"
-                + COLUMN_USER_AGE+ " text,"
+                + COLUMN_USER_AGE + " text,"
                 + COLUMN_USER_EMAIL + " text,"
-                + COLUMN_USER_PICTURE + " blob )";
+                + COLUMN_USER_PICTURE + " blob"+")";
         db.execSQL(CREATE_TABLE_USER);
 
         String CREATE_TABLE_PLACE = "create table " + PLACE_TABLE  + "("
