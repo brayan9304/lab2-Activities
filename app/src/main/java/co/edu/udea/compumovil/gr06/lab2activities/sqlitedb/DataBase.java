@@ -139,7 +139,6 @@ public class DataBase extends SQLiteOpenHelper {
         String[] campos = new String[] {COLUMN_USER_NAME};
         String[] args = new String[] {user};
         Cursor cursor = db.query(USER_TABLE, campos, "username=?", args, null, null, null);
-        db.close();
         return cursor.getCount() > 0;
     }//End userExist()
 
@@ -148,7 +147,6 @@ public class DataBase extends SQLiteOpenHelper {
         String[] campos = new String[] {COLUMN_USER_EMAIL};
         String[] args = new String[] {email};
         Cursor cursor = db.query(USER_TABLE, campos, "email=?", args, null, null, null);
-        db.close();
         return cursor.getCount() > 0;
     }//End emailExist()
 }//End class

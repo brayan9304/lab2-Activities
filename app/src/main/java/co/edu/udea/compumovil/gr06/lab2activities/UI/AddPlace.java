@@ -83,8 +83,11 @@ public class AddPlace extends AppCompatActivity {
         String pTemp =  temperature.getText().toString();
         String pDescription = description.getText().toString();
         imageBitmap.compress(Bitmap.CompressFormat.PNG, 50, bitesOut);
-
         byte[] pPicture = bitesOut.toByteArray();
+        Bitmap temp = Lugares.decodeSampledBitmapFromByte(pPicture, 100, 100);
+        bitesOut = new ByteArrayOutputStream();
+        temp.compress(Bitmap.CompressFormat.PNG, 50, bitesOut);
+        pPicture = bitesOut.toByteArray();
         admin.addPlace(pName, pLocation, pScore, pTemp, pDescription, pPicture);
 
         Toast.makeText(this, "Los datos han sido guardados",
