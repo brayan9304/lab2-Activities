@@ -41,7 +41,6 @@ public class Lugares extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,11 +53,9 @@ public class Lugares extends Fragment {
         Log.e("lugares", "onCreateView: " + lugaresPla.size());
         lugares = new ArrayList<>();
         Iterator iterator = lugaresPla.iterator();
-
         while (iterator.hasNext()) {
             Place place = (Place) iterator.next();
             if (place.getPicture() == null) {
-
                 try {
                     AssetManager am = fragment.getContext().getAssets();
                     lugarImagen = BitmapFactory.decodeStream(am.open("Imagenes/Rio-de-Janeiro.jpg"));
