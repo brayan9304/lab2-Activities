@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="co.edu.udea.compumovil.gr06.lab2activities.UI.PlaceView">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/viewPlacePhoto"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/ic_perfil"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="@string/foto_del_lugar_guardado_en_la_base_de_datos" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/viewPlacePhoto"
+                android:id="@+id/labelName"
+                android:layout_marginBottom="2dp"
+                android:textAppearance="@android:style/TextAppearance"
+                android:textSize="20dp"
+                android:text="Nombre:"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/viewPlaceName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginBottom="20dp"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textAppearance="@android:style/TextAppearance"
+                android:text="@string/hello_blank_fragment"
+                android:layout_below="@id/labelName" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/viewPlaceName"
+                android:id="@+id/labelLocation"
+                android:layout_marginBottom="2dp"
+                android:textSize="20dp"
+                android:text="Ubicacion:"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/viewPlaceLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:text="@string/hello_blank_fragment"
+                android:layout_below="@id/labelLocation"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/viewPlaceLocation"
+                android:id="@+id/labelScore"
+                android:layout_marginBottom="2dp"
+                android:textAppearance="@android:style/TextAppearance"
+                android:textSize="20dp"
+                android:text="Puntaje:"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/viewPlaceScore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginBottom="20dp"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textAppearance="@android:style/TextAppearance"
+                android:text="@string/hello_blank_fragment"
+                android:layout_below="@id/labelScore" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/viewPlaceScore"
+                android:id="@+id/labelTemperature"
+                android:layout_marginBottom="2dp"
+                android:textSize="20dp"
+                android:text="Temperatura:"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/viewPlaceTemperature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_marginBottom="20dp"
+                android:textSize="20sp"
+                android:text="@string/hello_blank_fragment"
+                android:layout_below="@id/labelTemperature" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/viewPlaceTemperature"
+                android:id="@+id/labelDescription"
+                android:layout_marginBottom="2dp"
+                android:textAppearance="@android:style/TextAppearance"
+                android:textSize="20dp"
+                android:text="Descripcion:"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/viewPlaceDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginBottom="20dp"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textAppearance="@android:style/TextAppearance"
+                android:text="@string/hello_blank_fragment"
+                android:layout_below="@id/labelDescription" />
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

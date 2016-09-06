@@ -149,11 +149,23 @@ public class DataBase extends SQLiteOpenHelper {
         return placesList;
     }//End getAllPlaces
 
-    public Cursor getPlace(SQLiteDatabase db, String placeName){
+    public Place getPlace(SQLiteDatabase db, String placeName){
         String[] campos = new String[] { COLUMN_NAME_PLACE, COLUMN_PLACE_LOCATION, COLUMN_PLACE_SCORE,
         COLUMN_PLACE_TEMPERATURE, COLUMN_PLACE_DESCRIPTION, COLUMN_PLACE_PICTURE};
         String[] args = new String[] {placeName};
-        return db.query(USER_TABLE, campos, "nameplace=?", args, null, null, null);
+        Cursor cursor = db.query(PLACE_TABLE, campos, "nameplace=?", args, null, null, null);
+        Place place;
+        if (cursor.moveToFirst()) {
+            place = new Place();
+            place.setNamePlace(cursor.getString(0));
+            place.setLocation(cursor.getString(1));
+            place.setScore(Float.parseFloat(cursor.getString(2)));
+            place.setTemperature(cursor.getString(3));
+            place.setDescription(cursor.getString(4));
+            place.setPicture(cursor.getBlob(5));
+            return place;
+        }
+        return null;
     }//End getPlace
 
     public boolean placeExist(String placeName){

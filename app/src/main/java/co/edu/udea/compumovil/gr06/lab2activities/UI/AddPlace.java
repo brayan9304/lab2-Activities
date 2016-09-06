@@ -85,19 +85,20 @@ public class AddPlace extends AppCompatActivity {
         if(imageBitmap != null) {
             if (ValidationLog.validarCampo(pName) && (ValidationLog.validarCampo(pLocation)) &&
                     (ValidationLog.validarCampo(pTemp)) && (ValidationLog.validarCampo(pDescription))) {
-                if (admin.placeExist(pName)) {
-                    if (admin.locationExist(pLocation)) {
+                if (!admin.placeExist(pName)) {
+                    if (!admin.locationExist(pLocation)) {
                         imageBitmap.compress(Bitmap.CompressFormat.JPEG, 0, bitesOut);
                         byte[] pPicture = bitesOut.toByteArray();
                         admin.addPlace(pName, pLocation, pScore, pTemp, pDescription, pPicture);
                         Toast.makeText(this, "Los datos han sido guardados",
                                 Toast.LENGTH_SHORT).show();
+                        finish();
                     } else {
-                        Toast.makeText(this, "Los datos han sido guardados",
+                        Toast.makeText(this, "El lugar con esa ubicacion ya existe",
                                 Toast.LENGTH_SHORT).show();
                     }//End if(!admin.locationExist(pLocation))
                 } else {
-                    Toast.makeText(this, "Los datos han sido guardados",
+                    Toast.makeText(this, "El lugar con ese nombre ya existe",
                             Toast.LENGTH_SHORT).show();
                 }//End if(!admin.placeExist(pName))
             } else {
