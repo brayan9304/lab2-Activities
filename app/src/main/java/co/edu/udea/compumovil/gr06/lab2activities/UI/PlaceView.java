@@ -43,8 +43,8 @@ public class PlaceView extends AppCompatActivity {
         foto.setImageBitmap(BitmapFactory.decodeByteArray(place.getPicture(), 0, place.getPicture().length));
         nombre.setText(place.getNamePlace());
         ubicacion.setText(place.getLocation());
-        puntaje.setText(Float.toString(place.getScore()) + "grados centigrados");
         temperatura.setText(place.getTemperature());
+        puntaje.setText(Float.toString(place.getScore()) + " grados centigrados");
         descripcion.setText(place.getDescription());
 
     }
