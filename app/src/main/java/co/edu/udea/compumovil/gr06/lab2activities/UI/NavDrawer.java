@@ -28,6 +28,7 @@ import co.edu.udea.compumovil.gr06.lab2activities.sqlitedb.DataBase;
 public class NavDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
     Fragment acercade;
     Fragment perfil;
     Fragment listaLugares;

@@ -16,7 +16,8 @@
             android:layout_marginTop="60dp"
             android:layout_marginBottom="40dp"
             android:src="@drawable/ic_perfil"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/foto_de_perfil" />
 
         <TextView
             android:id="@+id/UserName"

@@ -100,11 +100,11 @@ public class AddPlace extends AppCompatActivity {
                                 Toast.LENGTH_SHORT).show();
                         finish();
                     } else {
-                        Toast.makeText(this, "Ya existe esa localización",
+                        Toast.makeText(this, "El lugar con esa ubicacion ya existe",
                                 Toast.LENGTH_SHORT).show();
                     }//End if(!admin.locationExist(pLocation))
                 } else {
-                    Toast.makeText(this, "Ya existe ese sitio",
+                    Toast.makeText(this, "El lugar con ese nombre ya existe",
                             Toast.LENGTH_SHORT).show();
                 }//End if(!admin.placeExist(pName))
             } else {

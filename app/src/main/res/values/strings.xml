@@ -19,30 +19,39 @@
     <string name="infoAcercaDe">INGENIERIA DE SISTEMAS\n\nCOMPUTACIÓN MOVIL\n\nJaime Jiménez Serrano\nBrayan Barrientos Pabuena\nGrupo : 06\n\n2016</string>
 
     <string name="hello_blank_fragment">Roberto de Jesus Agudelo Restrepo</string>
-    <string name="icono_de_loggin">icono de loggin</string>
+    <string name="icono_de_loggin">Icono de loggin</string>
     <string name="crear_cuenta">Crear cuenta ?</string>
     <string name="nav_cuenta">Opciones</string>
     <string name="nav_sesion">Cerrar Sesión</string>
     <string name="mensaje_cerrar_sesion">Seguro que desea\ncerrar sesión?</string>
     <string name="opcion_positiva">SI</string>
     <string name="opcion_negativa">NO</string>
-    <string name="login_incorrecto">Usuario o contraseña incorrectos</string>
+    <string name="login_incorrecto">Usuario no existe o datos incorrectos</string>
 
     <string name="cedula">Cedula</string>
     <string name="tomar_foto">Tomar foto</string>
-    <string name="nombre_de_usuario">nombre de Usuario</string>
-    <string name="contrasena">contrasena</string>
+    <string name="nombre_de_usuario">Nombre de Usuario</string>
+    <string name="contrasena">Contraseña</string>
     <string name="edad">Edad</string>
-    <string name="anadir_usuario">Anadir Usuario</string>
-    <string name="anadir_lugar">Anadir Lugar</string>
+    <string name="anadir_usuario">Añadir Usuario</string>
+    <string name="anadir_lugar">Añadir Lugar</string>
     <string name="score">Puntaje</string>
-    <string name="descripcion">Descripcion</string>
+    <string name="descripcion">Descripción</string>
     <string name="temperatura">Temperatura</string>
-    <string name="ubicacion">Ubicacion</string>
+    <string name="ubicacion">Ubicación</string>
     <string name="nombre">Nombre</string>
     <string name="foto_del_lugar">Foto del lugar</string>
     <string name="foto_de_perfil_del_usuario">Foto de perfil del usuario</string>
     <string name="correo_electronico">Correo Electronico</string>
     <string name="select_Image">Seleccionar Imagen</string>
+    <string name="foto_del_lugar_guardado_en_la_base_de_datos">Foto del lugar guardado en la base de datos</string>
+    <string name="confirmar_contrase_a">Confirmar contraseña</string>
+    <string name="nombre_view">Nombre:</string>
+    <string name="ubicacion_view">Ubicacion:</string>
+    <string name="puntaje_view">Puntaje:</string>
+    <string name="temperatura_view">Temperatura:</string>
+    <string name="descripcion_view">Descripcion:</string>
+    <string name="foto_de_perfil">Foto de perfil</string>
+    <string name="menu_principal">Menú principal</string>
 
 </resources>

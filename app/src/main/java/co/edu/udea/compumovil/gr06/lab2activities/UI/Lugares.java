@@ -1,11 +1,13 @@
 package co.edu.udea.compumovil.gr06.lab2activities.UI;
 
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -29,6 +31,7 @@ import co.edu.udea.compumovil.gr06.lab2activities.sqlitedb.DataBase;
  * A simple {@link Fragment} subclass.
  */
 public class Lugares extends Fragment {
+
     ImageView lugar;
     List<Lugar_Card> lugares;
     RecyclerView recycler;
@@ -39,7 +42,6 @@ public class Lugares extends Fragment {
     public Lugares() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,7 +56,6 @@ public class Lugares extends Fragment {
         Log.e("lugares", "onCreateView: " + lugaresPla.size());
         lugares = new ArrayList<>();
         Iterator iterator = lugaresPla.iterator();
-
         while (iterator.hasNext()) {
             Place place = (Place) iterator.next();
             if (place.getPicture() == null) {
@@ -76,11 +77,17 @@ public class Lugares extends Fragment {
         recycler.setLayoutManager(layout);
 
         adaptador = new AdapterCard(lugares);
+
         ((AdapterCard) adaptador).setOnItemClickListenerPropio(new AdapterCard.OnItemClickListenerPropio() {
             @Override
             public void onItemClicked(View view, int position) {
                 Lugar_Card lugarseleccinado = lugares.get(position);
-                Toast.makeText(fragment.getContext(), lugarseleccinado.getNombreLugar(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(fragment.getContext(), lugarseleccinado.getNombreLugar(),
+                        Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(fragment.getContext(), PlaceView.class);
+                intent.putExtra(Place.PLACE_NAME, lugarseleccinado.getNombreLugar());
+                startActivity(intent);
+
             }
         });
         recycler.setAdapter(adaptador);

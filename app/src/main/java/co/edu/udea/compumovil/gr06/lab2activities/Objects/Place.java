@@ -4,6 +4,7 @@ package co.edu.udea.compumovil.gr06.lab2activities.Objects;
  * Created by brayan on 4/09/16.
  */
 public class Place {
+    public static String PLACE_NAME = "namePlace";
     private int placeId;
     private  String namePlace;
     private String location;
