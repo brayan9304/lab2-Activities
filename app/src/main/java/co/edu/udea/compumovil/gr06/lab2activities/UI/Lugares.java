@@ -1,7 +1,6 @@
 package co.edu.udea.compumovil.gr06.lab2activities.UI;
 
 
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -15,8 +14,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import co.edu.udea.compumovil.gr06.lab2activities.Objects.AdapterCard;
@@ -47,13 +46,18 @@ public class Lugares extends Fragment {
         // Inflate the layout for this fragment
         final View fragment = inflater.inflate(R.layout.fragment_lugares, container, false);
         lugar = (ImageView) fragment.findViewById(R.id.imagenLugarCard);
+        lugares = new ArrayList<>();
         Bitmap lugarImagen = null;
-        admin = new DataBase(fragment.getContext());
+        admin = new DataBase(this.getContext());
         List<Place> lugaresPla = admin.getAllPlaces();
-
         Log.e("lugares", "onCreateView: " + lugaresPla.size());
         lugares = new ArrayList<>();
-        try {
+        Iterator te = lugaresPla.iterator();
+        while (te.hasNext()) {
+            Place lugarcito = (Place) te.next();
+            lugares.add(new Lugar_Card(decodeSampledBitmapFromByte(lugarcito.getPicture(), 100, 100), lugarcito.getNamePlace(), lugarcito.getDescription(), lugarcito.getScore()));
+        }
+        /*try {
             AssetManager temp = fragment.getContext().getAssets();
             lugarImagen = BitmapFactory.decodeStream(temp.open("Imagenes/Torre-Eiffel-vista-panoramica.jpg"));
             //lugar.setImageBitmap(lugarImagen);
@@ -64,7 +68,7 @@ public class Lugares extends Fragment {
             lugares.add(new Lugar_Card(lugarImagen, "Rio e Janeiro", "Queda en brasil", 3.5F));
         } catch (IOException e) {
             Log.e("CARGA DE DATOS", "onCreateView: ERROR NO CARGO IMAGEN");
-        }
+        }*/
 
 
         recycler = (RecyclerView) fragment.findViewById(R.id.recicladorLugares);
@@ -85,6 +89,45 @@ public class Lugares extends Fragment {
 
 
         return fragment;
+    }
+
+    public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) >= reqHeight
+                    && (halfWidth / inSampleSize) >= reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
+    }
+
+    public static Bitmap decodeSampledBitmapFromByte(byte[] img, int reqWidth, int reqHeight) {
+
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeByteArray(img, 0, img.length, options);
+
+
+        // Calculate inSampleSize
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeByteArray(img, 0, img.length, options);
     }
 
 }

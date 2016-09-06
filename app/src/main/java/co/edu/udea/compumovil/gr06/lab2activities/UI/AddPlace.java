@@ -73,6 +73,7 @@ public class AddPlace extends AppCompatActivity {
         }//End if
     }//End onActivityResult
 
+
     public void addPlace(View v){
         DataBase admin = new DataBase(this);
         ByteArrayOutputStream bitesOut = new ByteArrayOutputStream();
@@ -81,9 +82,11 @@ public class AddPlace extends AppCompatActivity {
         double pScore = score.getRating();
         String pTemp =  temperature.getText().toString();
         String pDescription = description.getText().toString();
-        imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, bitesOut);
+        imageBitmap.compress(Bitmap.CompressFormat.PNG, 50, bitesOut);
+
         byte[] pPicture = bitesOut.toByteArray();
         admin.addPlace(pName, pLocation, pScore, pTemp, pDescription, pPicture);
+
         Toast.makeText(this, "Los datos han sido guardados",
                 Toast.LENGTH_SHORT).show();
     }//End addPlace
