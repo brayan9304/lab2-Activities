@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +34,7 @@ public class NavDrawer extends AppCompatActivity
     FloatingActionButton fab;
     AlertDialog.Builder mensaje;
     Sesion sesion;
+    int temp;
     public static byte[] photo;
 
     @Override
@@ -69,9 +71,9 @@ public class NavDrawer extends AppCompatActivity
             public void onClick(View view) {
                 Intent place = new Intent(getApplicationContext(), AddPlace.class);
                 startActivity(place);
+
             }
         });
-        fab.setClickable(false);
 
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -84,9 +86,22 @@ public class NavDrawer extends AppCompatActivity
 
         acercade = new AcercaDe();
         perfil = new Perfil();
-        Bundle temp = new Bundle();
         perfil.setArguments(savedInstanceState);
         listaLugares = new Lugares();
+
+        if (getSupportFragmentManager().findFragmentByTag("lugares") != null) {
+            fab.setVisibility(View.VISIBLE);
+            Log.e("que tal eh?", "onCreate: estado 1");
+        } else {
+            fab.setClickable(false);
+        }
+
+    }
+
+    @Override
+    protected void onResume() {
+        replaceFragment(listaLugares, "lugares");
+        super.onResume();
     }
 
     @Override
@@ -98,6 +113,7 @@ public class NavDrawer extends AppCompatActivity
             mensaje.show();
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -125,34 +141,11 @@ public class NavDrawer extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_lugares) {
-            replaceFragment(listaLugares);
-            if (!fab.isClickable()) {
-                Animation entradaFab = AnimationUtils.loadAnimation(getApplication(), R.anim.floating_button_in);
-                fab.startAnimation(entradaFab);
-                fab.setClickable(true);
-                fab.setFocusable(true);
-            }
-
-
+            replaceFragment(listaLugares, "lugares");
         } else if (id == R.id.nav_perfil) {
-            replaceFragment(perfil);
-            if (fab.isClickable()) {
-                Animation salidaFab = AnimationUtils.loadAnimation(getApplication(), R.anim.floating_button_out);
-                fab.startAnimation(salidaFab);
-                fab.setClickable(false);
-                fab.setFocusable(false);
-            }
-
+            replaceFragment(perfil, "perfil");
         } else if (id == R.id.nav_acercaDe) {
-            replaceFragment(acercade);
-            if (fab.isClickable()) {
-                Animation salidaFab = AnimationUtils.loadAnimation(getApplication(), R.anim.floating_button_out);
-                fab.startAnimation(salidaFab);
-                fab.setClickable(false);
-                fab.setFocusable(false);
-            }
-
-
+            replaceFragment(acercade, "acercaDe");
         } else if (id == R.id.nav_cerrarsesion) {
             mensaje.show();
         }
@@ -162,11 +155,28 @@ public class NavDrawer extends AppCompatActivity
         return true;
     }
 
-    public void replaceFragment(android.support.v4.app.Fragment fragment) {
+    public void replaceFragment(android.support.v4.app.Fragment fragment, String TAG) {
+
         FragmentTransaction adminFrag = getSupportFragmentManager().beginTransaction();
-        adminFrag.replace(R.id.NavContainerFragments, fragment);
+        adminFrag.replace(R.id.NavContainerFragments, fragment, TAG);
         adminFrag.disallowAddToBackStack();
         adminFrag.commit();
+        if (fragment instanceof Lugares) {
+            Animation entradaFab = AnimationUtils.loadAnimation(getApplication(), R.anim.floating_button_in);
+            if (!fab.isClickable()) {
+                fab.startAnimation(entradaFab);
+            }
+            fab.setClickable(true);
+            fab.setFocusable(true);
+        } else {
+            Animation salidaFab = AnimationUtils.loadAnimation(getApplication(), R.anim.floating_button_out);
+            if (fab.isClickable()) {
+                fab.startAnimation(salidaFab);
+            }
+            fab.setClickable(false);
+            fab.setFocusable(false);
+        }
+
     }
 
 

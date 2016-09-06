@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
@@ -14,10 +13,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
-import java.util.Iterator;
-import java.util.List;
 
-import co.edu.udea.compumovil.gr06.lab2activities.Objects.Place;
 import co.edu.udea.compumovil.gr06.lab2activities.R;
 import co.edu.udea.compumovil.gr06.lab2activities.Validations.ValidationLog;
 import co.edu.udea.compumovil.gr06.lab2activities.sqlitedb.DataBase;
@@ -84,7 +80,7 @@ public class AddUser extends AppCompatActivity {
         if (imageBitmap == null) {
             uPicture = null;
         } else {
-            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 0, bitesOut);
+            imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, bitesOut);
             uPicture = bitesOut.toByteArray();
         }
         if (ValidationLog.validarCampo(userAge.getText().toString())) {

@@ -69,7 +69,8 @@
                 android:layout_below="@+id/placeLocation"
                 android:layout_marginRight="10dp"
                 android:layout_alignParentRight="true"
-                style="?attr/ratingBarStyleIndicator"
+                style="?android:attr/ratingBarStyleIndicator"
+                android:isIndicator="false"
                 android:numStars="5" />
 
             <EditText

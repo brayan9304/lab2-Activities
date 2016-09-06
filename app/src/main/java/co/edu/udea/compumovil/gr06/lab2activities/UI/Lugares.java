@@ -1,6 +1,7 @@
 package co.edu.udea.compumovil.gr06.lab2activities.UI;
 
 
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -53,12 +54,10 @@ public class Lugares extends Fragment {
         Log.e("lugares", "onCreateView: " + lugaresPla.size());
         lugares = new ArrayList<>();
         Iterator iterator = lugaresPla.iterator();
-            lugares.add(new Lugar_Card(decodeSampledBitmapFromByte(lugarcito.getPicture(), 100, 100), lugarcito.getNamePlace(), lugarcito.getDescription(), lugarcito.getScore()));
 
         while (iterator.hasNext()) {
             Place place = (Place) iterator.next();
             if (place.getPicture() == null) {
-
                 try {
                     AssetManager am = fragment.getContext().getAssets();
                     lugarImagen = BitmapFactory.decodeStream(am.open("Imagenes/Rio-de-Janeiro.jpg"));
@@ -66,7 +65,7 @@ public class Lugares extends Fragment {
                 } catch (Exception e) {
                 }
             } else {
-                lugares.add(new Lugar_Card(BitmapFactory.decodeByteArray(place.getPicture(), 0, place.getPicture().length), place.getNamePlace(), place.getDescription(), place.getScore()));
+                lugares.add(new Lugar_Card(decodeSampledBitmapFromByte(place.getPicture(), 100, 100), place.getNamePlace(), place.getDescription(), place.getScore()));
             }
         }//End while(iterator.hasNext())
 

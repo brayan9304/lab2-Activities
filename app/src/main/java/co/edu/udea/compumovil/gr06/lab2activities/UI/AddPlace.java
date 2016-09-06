@@ -83,29 +83,28 @@ public class AddPlace extends AppCompatActivity {
         double pScore = score.getRating();
         String pTemp =  temperature.getText().toString();
         String pDescription = description.getText().toString();
-        imageBitmap.compress(Bitmap.CompressFormat.PNG, 50, bitesOut);
-        byte[] pPicture = bitesOut.toByteArray();
-        Bitmap temp = Lugares.decodeSampledBitmapFromByte(pPicture, 100, 100);
-        bitesOut = new ByteArrayOutputStream();
-        temp.compress(Bitmap.CompressFormat.PNG, 50, bitesOut);
-        pPicture = bitesOut.toByteArray();
-        admin.addPlace(pName, pLocation, pScore, pTemp, pDescription, pPicture);
+
         if(imageBitmap != null) {
             if (ValidationLog.validarCampo(pName) && (ValidationLog.validarCampo(pLocation)) &&
                     (ValidationLog.validarCampo(pTemp)) && (ValidationLog.validarCampo(pDescription))) {
-                if (admin.placeExist(pName)) {
-                    if (admin.locationExist(pLocation)) {
-                        imageBitmap.compress(Bitmap.CompressFormat.JPEG, 0, bitesOut);
+                if (!admin.placeExist(pName)) {
+                    if (!admin.locationExist(pLocation)) {
+                        imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, bitesOut);
                         byte[] pPicture = bitesOut.toByteArray();
+                        Bitmap temp = Lugares.decodeSampledBitmapFromByte(pPicture, 100, 100);
+                        bitesOut = new ByteArrayOutputStream();
+                        temp.compress(Bitmap.CompressFormat.PNG, 100, bitesOut);
+                        pPicture = bitesOut.toByteArray();
                         admin.addPlace(pName, pLocation, pScore, pTemp, pDescription, pPicture);
                         Toast.makeText(this, "Los datos han sido guardados",
                                 Toast.LENGTH_SHORT).show();
+                        finish();
                     } else {
-                        Toast.makeText(this, "Los datos han sido guardados",
+                        Toast.makeText(this, "Ya existe esa localización",
                                 Toast.LENGTH_SHORT).show();
                     }//End if(!admin.locationExist(pLocation))
                 } else {
-                    Toast.makeText(this, "Los datos han sido guardados",
+                    Toast.makeText(this, "Ya existe ese sitio",
                             Toast.LENGTH_SHORT).show();
                 }//End if(!admin.placeExist(pName))
             } else {

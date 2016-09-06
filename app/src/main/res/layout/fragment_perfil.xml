@@ -11,8 +11,8 @@
 
         <ImageView
             android:id="@+id/UserPhoto"
-            android:layout_width="100dp"
-            android:layout_height="150dp"
+            android:layout_width="160dp"
+            android:layout_height="220dp"
             android:layout_marginTop="60dp"
             android:layout_marginBottom="40dp"
             android:src="@drawable/ic_perfil"
