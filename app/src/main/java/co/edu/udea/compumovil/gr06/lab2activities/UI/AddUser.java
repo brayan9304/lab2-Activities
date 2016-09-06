@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Iterator;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class AddUser extends AppCompatActivity {
     private EditText userPassword2;
     private ImageView userPicture;
     public static Context context;
+    private Bitmap imageBitmap;
 
     @Override
 
@@ -42,7 +44,8 @@ public class AddUser extends AppCompatActivity {
         userAge = (EditText) findViewById(R.id.userAge);
         userEmail = (EditText) findViewById(R.id.userEmail);
         userPicture = (ImageView) findViewById(R.id.userPicture);
-        context = this;
+
+
     }//End onCreate
 
     public void addPhoto(View view) {
@@ -61,38 +64,35 @@ public class AddUser extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            imageBitmap = (Bitmap) extras.get("data");
             userPicture.setImageBitmap(imageBitmap);
+
         }//End if
     }//End onActivityResult
 
     public void addUser(View v) {
+
         DataBase admin = new DataBase(this);
-
-        List<Place> all = admin.getAllPlaces();
-        Log.d("AllPlaces", ""+all.size());
-        Iterator iterator = all.iterator();
-        while(iterator.hasNext()){
-            Place p = (Place)iterator.next();
-            Log.d("_id", ""+p.getPlaceId());
-            Log.d("name", ""+p.getNamePlace());
-            Log.d("location", ""+p.getLocation());
-            Log.d("temperature", ""+p.getTemperature());
-            Log.d("picture", ""+p.getPicture());
-
-        }
+        ByteArrayOutputStream bitesOut = new ByteArrayOutputStream();
         String uName = userName.getText().toString();
         String uPass = userPassword.getText().toString();
         String uPass2 = userPassword2.getText().toString();
         int uAge;
         String uEmail = userEmail.getText().toString();
-        byte[] uPicture = null;
+        byte[] uPicture;
+
+        if (imageBitmap == null) {
+            uPicture = null;
+        } else {
+            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 0, bitesOut);
+            uPicture = bitesOut.toByteArray();
+        }
         if (ValidationLog.validarCampo(userAge.getText().toString())) {
             uAge = Integer.parseInt(userAge.getText().toString());
             if (ValidationLog.validarCampo(uName) && (ValidationLog.validarCampo(uPass)) &&
                     (ValidationLog.validarCampo(uPass2)) && (ValidationLog.validarCampo(uEmail))) {
                 if (uPass.equals(uPass2)) {
-                    if (!validarEmail(uEmail)) {
+                    if (validarEmail(uEmail)) {
                         if (!admin.userExist(uName)) {
                             if (!admin.emailExist(uEmail)) {
                                 admin.addUser(uName, uPass, uAge, uEmail, uPicture);
@@ -117,14 +117,14 @@ public class AddUser extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Campos en blancos",
                         Toast.LENGTH_SHORT).show();
-            }
-        }else{
-            Toast.makeText(this, "Espacios en blancos",
+            }//End validate white spaces
+        } else {
+            Toast.makeText(this, "Campos de texto obligatorios",
                     Toast.LENGTH_SHORT).show();
-        }
+        }//End if (ValidationLog.validarCampo(userAge.getText().toString()))
     }//End addUser
 
-    public boolean validarEmail(String email){
+    public boolean validarEmail(String email) {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }//End validarEmail
 }//End class

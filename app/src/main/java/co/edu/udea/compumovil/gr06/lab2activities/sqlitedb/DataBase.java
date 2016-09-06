@@ -6,12 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import co.edu.udea.compumovil.gr06.lab2activities.Objects.Place;
-
 
 /**
  * Created by brayan on 30/08/16.
@@ -77,6 +75,8 @@ public class DataBase extends SQLiteOpenHelper {
         onCreate(db);
     }//End onUpgrade
 
+    //************USER METHODS**************
+
     public void addUser(String userName, String password, int userAge, String email, byte[] userPicture){
         SQLiteDatabase bd = getWritableDatabase();
         ContentValues registro = new ContentValues();
@@ -96,6 +96,23 @@ public class DataBase extends SQLiteOpenHelper {
         return db.query(USER_TABLE, campos, "username=? and password=?", args, null, null, null);
     }//End getUser
 
+    public boolean userExist(String user) {
+        SQLiteDatabase db = getWritableDatabase();
+        String[] campos = new String[] {COLUMN_USER_NAME};
+        String[] args = new String[] {user};
+        Cursor cursor = db.query(USER_TABLE, campos, "username=?", args, null, null, null);
+        return cursor.getCount() > 0;
+    }//End userExist()
+
+    public boolean emailExist(String email) {
+        SQLiteDatabase db = getWritableDatabase();
+        String[] campos = new String[] {COLUMN_USER_EMAIL};
+        String[] args = new String[] {email};
+        Cursor cursor = db.query(USER_TABLE, campos, "email=?", args, null, null, null);
+        return cursor.getCount() > 0;
+    }//End emailExist()
+
+    //************PLACE METHODS**************
 
     public void addPlace(String pName, String pLocation, double pScore, String pTemperature, String pDescription, byte[] pPicture){
         SQLiteDatabase bd = getWritableDatabase();
@@ -115,9 +132,7 @@ public class DataBase extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + PLACE_TABLE;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
-        Log.d("", "getAllPlaces: " + cursor.getCount() + " algo " + cursor.getColumnCount());
         if (cursor.moveToFirst()) {
-            Log.d("algo mas ", "getAllPlaces: " + cursor.getString(0));
             do {
                 Place place = new Place();
                 place.setPlaceId(Integer.parseInt(cursor.getString(0)));
@@ -134,19 +149,26 @@ public class DataBase extends SQLiteOpenHelper {
         return placesList;
     }//End getAllPlaces
 
-    public boolean userExist(String user) {
-        SQLiteDatabase db = getWritableDatabase();
-        String[] campos = new String[] {COLUMN_USER_NAME};
-        String[] args = new String[] {user};
-        Cursor cursor = db.query(USER_TABLE, campos, "username=?", args, null, null, null);
-        return cursor.getCount() > 0;
-    }//End userExist()
+    public Cursor getPlace(SQLiteDatabase db, String placeName){
+        String[] campos = new String[] { COLUMN_NAME_PLACE, COLUMN_PLACE_LOCATION, COLUMN_PLACE_SCORE,
+        COLUMN_PLACE_TEMPERATURE, COLUMN_PLACE_DESCRIPTION, COLUMN_PLACE_PICTURE};
+        String[] args = new String[] {placeName};
+        return db.query(USER_TABLE, campos, "nameplace=?", args, null, null, null);
+    }//End getPlace
 
-    public boolean emailExist(String email) {
+    public boolean placeExist(String placeName){
         SQLiteDatabase db = getWritableDatabase();
-        String[] campos = new String[] {COLUMN_USER_EMAIL};
-        String[] args = new String[] {email};
-        Cursor cursor = db.query(USER_TABLE, campos, "email=?", args, null, null, null);
+        String[] campos = new String[] {COLUMN_NAME_PLACE};
+        String[] args = new String[] {placeName};
+        Cursor cursor = db.query(PLACE_TABLE, campos, "nameplace=?", args, null, null, null);
         return cursor.getCount() > 0;
-    }//End emailExist()
+    }//End placeExist
+
+    public boolean locationExist(String location){
+        SQLiteDatabase db = getWritableDatabase();
+        String[] campos = new String[] {COLUMN_PLACE_LOCATION};
+        String[] args = new String[] {location};
+        Cursor cursor = db.query(PLACE_TABLE, campos, "LOCATION=?", args, null, null, null);
+        return cursor.getCount() > 0;
+    }//End location
 }//End class

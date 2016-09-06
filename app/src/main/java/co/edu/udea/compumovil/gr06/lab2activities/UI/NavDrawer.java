@@ -33,6 +33,7 @@ public class NavDrawer extends AppCompatActivity
     FloatingActionButton fab;
     AlertDialog.Builder mensaje;
     Sesion sesion;
+    public static byte[] photo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +47,8 @@ public class NavDrawer extends AppCompatActivity
         if (!sesion.validarLog()) {
             finish();
         }
-        String datos = getIntent().getStringExtra(DataBase.COLUMN_PLACE_PICTURE);
-
+        Intent i = getIntent();
+        photo = i.getByteArrayExtra(DataBase.COLUMN_USER_PICTURE);
         mensaje = new AlertDialog.Builder(this);
         mensaje.setMessage(R.string.mensaje_cerrar_sesion);
         mensaje.setPositiveButton(R.string.opcion_positiva, new DialogInterface.OnClickListener() {

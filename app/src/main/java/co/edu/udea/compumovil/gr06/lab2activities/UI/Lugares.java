@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import co.edu.udea.compumovil.gr06.lab2activities.Objects.AdapterCard;
@@ -50,22 +51,24 @@ public class Lugares extends Fragment {
         Bitmap lugarImagen = null;
         admin = new DataBase(fragment.getContext());
         List<Place> lugaresPla = admin.getAllPlaces();
-
         Log.e("lugares", "onCreateView: " + lugaresPla.size());
         lugares = new ArrayList<>();
-        try {
-            AssetManager temp = fragment.getContext().getAssets();
-            lugarImagen = BitmapFactory.decodeStream(temp.open("Imagenes/Torre-Eiffel-vista-panoramica.jpg"));
-            //lugar.setImageBitmap(lugarImagen);
-            lugares.add(new Lugar_Card(lugarImagen, "Torre Eiffel", "es bonita y muy grande est sdsff sdfds f rewr  eld asdo sdn sd", 3.0F));
-            lugarImagen = BitmapFactory.decodeStream(temp.open("Imagenes/lugares-turisticos-kipcool.jpg"));
-            lugares.add(new Lugar_Card(lugarImagen, "Kipcool", "información rara sobre este lugar pero algo mas raro es como copio XD", 5.0F));
-            lugarImagen = BitmapFactory.decodeStream(temp.open("Imagenes/Rio-de-Janeiro.jpg"));
-            lugares.add(new Lugar_Card(lugarImagen, "Rio e Janeiro", "Queda en brasil", 3.5F));
-        } catch (IOException e) {
-            Log.e("CARGA DE DATOS", "onCreateView: ERROR NO CARGO IMAGEN");
-        }
+        Iterator iterator = lugaresPla.iterator();
 
+        while (iterator.hasNext()) {
+            Place place = (Place) iterator.next();
+            if (place.getPicture() == null) {
+
+                try {
+                    AssetManager am = fragment.getContext().getAssets();
+                    lugarImagen = BitmapFactory.decodeStream(am.open("Imagenes/Rio-de-Janeiro.jpg"));
+                    lugares.add(new Lugar_Card(lugarImagen, place.getNamePlace(), place.getDescription(), place.getScore()));
+                } catch (Exception e) {
+                }
+            } else {
+                lugares.add(new Lugar_Card(BitmapFactory.decodeByteArray(place.getPicture(), 0, place.getPicture().length), place.getNamePlace(), place.getDescription(), place.getScore()));
+            }
+        }//End while(iterator.hasNext())
 
         recycler = (RecyclerView) fragment.findViewById(R.id.recicladorLugares);
         recycler.hasFixedSize();

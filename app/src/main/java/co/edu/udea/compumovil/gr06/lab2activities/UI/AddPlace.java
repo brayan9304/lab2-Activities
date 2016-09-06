@@ -17,6 +17,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import co.edu.udea.compumovil.gr06.lab2activities.R;
+import co.edu.udea.compumovil.gr06.lab2activities.Validations.ValidationLog;
 import co.edu.udea.compumovil.gr06.lab2activities.sqlitedb.DataBase;
 
 public class AddPlace extends AppCompatActivity {
@@ -81,10 +82,31 @@ public class AddPlace extends AppCompatActivity {
         double pScore = score.getRating();
         String pTemp =  temperature.getText().toString();
         String pDescription = description.getText().toString();
-        imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, bitesOut);
-        byte[] pPicture = bitesOut.toByteArray();
-        admin.addPlace(pName, pLocation, pScore, pTemp, pDescription, pPicture);
-        Toast.makeText(this, "Los datos han sido guardados",
-                Toast.LENGTH_SHORT).show();
+        if(imageBitmap != null) {
+            if (ValidationLog.validarCampo(pName) && (ValidationLog.validarCampo(pLocation)) &&
+                    (ValidationLog.validarCampo(pTemp)) && (ValidationLog.validarCampo(pDescription))) {
+                if (admin.placeExist(pName)) {
+                    if (admin.locationExist(pLocation)) {
+                        imageBitmap.compress(Bitmap.CompressFormat.JPEG, 0, bitesOut);
+                        byte[] pPicture = bitesOut.toByteArray();
+                        admin.addPlace(pName, pLocation, pScore, pTemp, pDescription, pPicture);
+                        Toast.makeText(this, "Los datos han sido guardados",
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this, "Los datos han sido guardados",
+                                Toast.LENGTH_SHORT).show();
+                    }//End if(!admin.locationExist(pLocation))
+                } else {
+                    Toast.makeText(this, "Los datos han sido guardados",
+                            Toast.LENGTH_SHORT).show();
+                }//End if(!admin.placeExist(pName))
+            } else {
+                Toast.makeText(this, "Campos de texto obligatorios",
+                        Toast.LENGTH_SHORT).show();
+            }//End validate white fields
+        }else{
+            Toast.makeText(this, "La imagen es obligatoria",
+                    Toast.LENGTH_SHORT).show();
+        }//End if(imageBitmap != null)
     }//End addPlace
 }//End class
