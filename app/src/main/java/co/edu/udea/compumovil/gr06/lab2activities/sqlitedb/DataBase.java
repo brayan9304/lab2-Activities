@@ -117,7 +117,7 @@ public class DataBase extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectQuery, null);
         Log.d("", "getAllPlaces: " + cursor.getCount() + " algo " + cursor.getColumnCount());
         if (cursor.moveToFirst()) {
-            Log.d("algo mas ", "getAllPlaces: " + cursor.getString(0));
+            Log.d("algo mas ", "getAllPlaces: " + cursor.moveToFirst() + " a al  " + cursor.getColumnIndex(COLUMN_PLACE_ID));
             do {
                 Place place = new Place();
                 place.setPlaceId(Integer.parseInt(cursor.getString(0)));
@@ -130,7 +130,7 @@ public class DataBase extends SQLiteOpenHelper {
                 placesList.add(place);
             } while (cursor.moveToNext());
         }//End if (cursor.moveToFirst())
-
+        db.close();
         return placesList;
     }//End getAllPlaces
 
