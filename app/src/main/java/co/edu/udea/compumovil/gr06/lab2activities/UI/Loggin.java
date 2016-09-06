@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import co.edu.udea.compumovil.gr06.lab2activities.R;
 import co.edu.udea.compumovil.gr06.lab2activities.Validations.Sesion;
 import co.edu.udea.compumovil.gr06.lab2activities.Validations.ValidationLog;
@@ -60,7 +59,7 @@ public class Loggin extends AppCompatActivity implements View.OnFocusChangeListe
                         if (cursor.moveToFirst()) {
 
                             Intent intent = new Intent(this, NavDrawer.class);
-                            sesion.crearSesion(cursor.getString(0), cursor.getString(1));
+                            sesion.crearSesion(cursor.getString(0), cursor.getString(1), userPass);
                             intent.putExtra(DataBase.COLUMN_USER_PICTURE, cursor.getBlob(2));
                             startActivity(intent);
                             finish();

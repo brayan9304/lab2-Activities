@@ -74,16 +74,15 @@
                 android:textSize="20sp"
                 android:text="@string/puntaje_view"
                 android:textAlignment="center"/>
-            <TextView
+
+            <RatingBar
                 android:id="@+id/viewPlaceScore"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:numStars="5"
                 android:layout_marginBottom="20dp"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textAppearance="@android:style/TextAppearance"
-                android:text="@string/hello_blank_fragment"
+                android:isIndicator="true"
                 android:layout_below="@id/labelScore" />
 
             <TextView

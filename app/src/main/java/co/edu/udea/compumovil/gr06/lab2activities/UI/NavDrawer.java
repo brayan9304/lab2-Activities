@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import co.edu.udea.compumovil.gr06.lab2activities.R;
@@ -35,6 +36,7 @@ public class NavDrawer extends AppCompatActivity
     FloatingActionButton fab;
     AlertDialog.Builder mensaje;
     Sesion sesion;
+    TextView bienvenido;
     int temp;
     public static byte[] photo;
 
@@ -50,6 +52,8 @@ public class NavDrawer extends AppCompatActivity
         if (!sesion.validarLog()) {
             finish();
         }
+        bienvenido = (TextView) findViewById(R.id.bienvenido);
+
         Intent i = getIntent();
         photo = i.getByteArrayExtra(DataBase.COLUMN_USER_PICTURE);
         mensaje = new AlertDialog.Builder(this);
@@ -87,21 +91,24 @@ public class NavDrawer extends AppCompatActivity
 
         acercade = new AcercaDe();
         perfil = new Perfil();
-        perfil.setArguments(savedInstanceState);
+        //perfil.setArguments(savedInstanceState);
         listaLugares = new Lugares();
 
         if (getSupportFragmentManager().findFragmentByTag("lugares") != null) {
             fab.setVisibility(View.VISIBLE);
+            bienvenido.setVisibility(View.GONE);
             Log.e("que tal eh?", "onCreate: estado 1");
         } else {
             fab.setClickable(false);
+            if (getSupportFragmentManager().findFragmentByTag("perfil") != null || getSupportFragmentManager().findFragmentByTag("acercaDe") != null) {
+                bienvenido.setVisibility(View.GONE);
+            }
         }
 
     }
 
     @Override
     protected void onResume() {
-        replaceFragment(listaLugares, "lugares");
         super.onResume();
     }
 
@@ -162,6 +169,7 @@ public class NavDrawer extends AppCompatActivity
         adminFrag.replace(R.id.NavContainerFragments, fragment, TAG);
         adminFrag.disallowAddToBackStack();
         adminFrag.commit();
+        bienvenido.setVisibility(View.GONE);
         if (fragment instanceof Lugares) {
             Animation entradaFab = AnimationUtils.loadAnimation(getApplication(), R.anim.floating_button_in);
             if (!fab.isClickable()) {

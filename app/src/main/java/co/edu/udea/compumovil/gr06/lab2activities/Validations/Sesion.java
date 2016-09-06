@@ -21,6 +21,7 @@ public class Sesion {
     private static final String ESTA_LOGGEADO = "EstaLogueado";
     private static final String KEY_NOMBRE = "nombre";
     private static final String KEY_EDAD = "edad";
+    private static final String KEY_CLAVE = "clave";
 
     public Sesion(Context context) {
         this.contextoApp = context;
@@ -28,10 +29,11 @@ public class Sesion {
         edt = preferencias.edit();
     }
 
-    public void crearSesion(String nombre, String edad) {
+    public void crearSesion(String nombre, String edad, String clave) {
         edt.putBoolean(ESTA_LOGGEADO, true);
         edt.putString(KEY_NOMBRE, nombre);
         edt.putString(KEY_EDAD, edad);
+        edt.putString(KEY_CLAVE, clave);
         edt.commit();
     }
 
@@ -56,11 +58,9 @@ public class Sesion {
 
     public HashMap<String, String> getUserDetails() {
         HashMap<String, String> user = new HashMap<String, String>();
-        // user name
         user.put(KEY_NOMBRE, preferencias.getString(KEY_NOMBRE, null));
-
-        // user email id
         user.put(KEY_EDAD, preferencias.getString(KEY_EDAD, null));
+        user.put(KEY_CLAVE, preferencias.getString(KEY_CLAVE, null));
 
         // return user
         return user;

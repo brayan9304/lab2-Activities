@@ -37,7 +37,7 @@
     <string name="anadir_lugar">Añadir Lugar</string>
     <string name="score">Puntaje</string>
     <string name="descripcion">Descripción</string>
-    <string name="temperatura">Temperatura</string>
+    <string name="temperatura">Temperatura (°C)</string>
     <string name="ubicacion">Ubicación</string>
     <string name="nombre">Nombre</string>
     <string name="foto_del_lugar">Foto del lugar</string>
@@ -53,5 +53,6 @@
     <string name="descripcion_view">Descripcion:</string>
     <string name="foto_de_perfil">Foto de perfil</string>
     <string name="menu_principal">Menú principal</string>
+    <string name="bienvenido">Bienvenido</string>
 
 </resources>
