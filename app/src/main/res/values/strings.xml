@@ -44,5 +44,6 @@
     <string name="foto_de_perfil_del_usuario">Foto de perfil del usuario</string>
     <string name="correo_electronico">Correo Electronico</string>
     <string name="select_Image">Seleccionar Imagen</string>
+    <string name="foto_del_lugar_guardado_en_la_base_de_datos">Foto del lugar guardado en la base de datos</string>
 
 </resources>
