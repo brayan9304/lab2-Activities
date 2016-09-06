@@ -30,8 +30,8 @@
                 android:id="@+id/labelName"
                 android:layout_marginBottom="2dp"
                 android:textAppearance="@android:style/TextAppearance"
-                android:textSize="20dp"
-                android:text="Nombre:"
+                android:textSize="20sp"
+                android:text="@string/nombre_view"
                 android:textAlignment="center"/>
             <TextView
                 android:id="@+id/viewPlaceName"
@@ -51,8 +51,8 @@
                 android:layout_below="@id/viewPlaceName"
                 android:id="@+id/labelLocation"
                 android:layout_marginBottom="2dp"
-                android:textSize="20dp"
-                android:text="Ubicacion:"
+                android:textSize="20sp"
+                android:text="@string/ubicacion_view"
                 android:textAlignment="center"/>
             <TextView
                 android:id="@+id/viewPlaceLocation"
@@ -71,8 +71,8 @@
                 android:id="@+id/labelScore"
                 android:layout_marginBottom="2dp"
                 android:textAppearance="@android:style/TextAppearance"
-                android:textSize="20dp"
-                android:text="Puntaje:"
+                android:textSize="20sp"
+                android:text="@string/puntaje_view"
                 android:textAlignment="center"/>
             <TextView
                 android:id="@+id/viewPlaceScore"
@@ -92,8 +92,8 @@
                 android:layout_below="@id/viewPlaceScore"
                 android:id="@+id/labelTemperature"
                 android:layout_marginBottom="2dp"
-                android:textSize="20dp"
-                android:text="Temperatura:"
+                android:textSize="20sp"
+                android:text="@string/temperatura_view"
                 android:textAlignment="center"/>
 
             <TextView
@@ -112,8 +112,8 @@
                 android:id="@+id/labelDescription"
                 android:layout_marginBottom="2dp"
                 android:textAppearance="@android:style/TextAppearance"
-                android:textSize="20dp"
-                android:text="Descripcion:"
+                android:textSize="20sp"
+                android:text="@string/descripcion_view"
                 android:textAlignment="center"/>
             <TextView
                 android:id="@+id/viewPlaceDescription"

@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/userPassword"
-                android:hint="confirmar contrasena"
+                android:hint="@string/confirmar_contrase_a"
                 android:inputType="textPassword" />
 
             <EditText
