@@ -8,7 +8,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".UI.AddUser">
-    tools:context=".UI.AddUser">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -33,7 +32,17 @@
                 android:layout_centerHorizontal="true"
                 android:text="@string/tomar_foto"
                 android:onClick="addPhoto" />
-
+            <!--
+            <Button
+                android:id="@+id/addGallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/userPicture"
+                android:layout_toRightOf="@+id/addPhoto"
+                android:layout_centerHorizontal="true"
+                android:text="Anadir de galeria"
+                android:onClick="addPhoto" />
+                -->
             <EditText
                 android:id="@+id/userName"
                 android:layout_width="match_parent"
